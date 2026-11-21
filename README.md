@@ -2,16 +2,6 @@
 
 A static site with no build step. Hosted on GitHub Pages at <https://sarveshg88.github.io>.
 
-## Role-specific links
-
-The "Hiring for" switch at the top changes the pitch, the headline numbers and the order of the projects. Each option has its own link, so you can send each recruiter the version that fits:
-
-| Role | Link |
-|---|---|
-| Product management | https://sarveshg88.github.io/ |
-| AI product management | https://sarveshg88.github.io/?for=ai |
-| Analytics | https://sarveshg88.github.io/?for=analytics |
-
 ## Files
 
 - `index.html`: the whole site (styles and script are inline)
@@ -24,10 +14,9 @@ The "Hiring for" switch at the top changes the pitch, the headline numbers and t
 
 ## Editing content
 
-- **Hero pitch and numbers per role:** the three `data-lens-pane` blocks in the hero.
-- **Project order per role:** each project card has `style="--o-product:1;--o-ai:3;--o-analytics:3"`. Lower numbers show first.
-- **Which Amex track is highlighted:** the `track-pm` and `track-ai` classes. AI and Analytics put `track-ai` first.
-- **Rotating headline word:** the `.rot` spans in the hero. `lensWord` in the script picks which word each lens jumps to.
+- **Hero pitch and numbers:** the `.sub` paragraph and `.stats` block in the hero.
+- **Project order:** the cards in `.cases` show in the order they appear in the file.
+- **Rotating headline word:** the `.rot` spans in the hero (fix, product, model, agent).
 - **Root cause tracer cases:** the `CASES` array in the script (symptoms, root cause, fixes, note).
 - **Periodic table skills:** the `ELEMENTS` array in the script, as `[symbol, name, family]`. Families are `tech`, `ana`, `exp` and `prod`.
 - **Animated numbers:** any element with `data-count` counts up when it scrolls into view. `data-pre` and `data-suf` hold the text before and after the number.
@@ -50,7 +39,7 @@ Every version is kept in the git history, so any change can be undone.
 ## Preview locally
 
 ```
-python -m http.server 5173 --directory site
+python -m http.server 5173 --directory D:\Portfolio\site
 ```
 
 Then open http://localhost:5173.

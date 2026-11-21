@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-lens="product">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -24,8 +24,6 @@
     var r = document.documentElement;
     r.classList.add('js');
     try { var t = localStorage.getItem('sg-theme'); if (t) r.setAttribute('data-theme', t); } catch (e) {}
-    var f = new URLSearchParams(location.search).get('for');
-    if (f === 'product' || f === 'ai' || f === 'analytics') r.setAttribute('data-lens', f);
   })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
@@ -207,19 +205,11 @@ section { padding-block: var(--sp-900) 0; position: relative; }
 @keyframes float2 { to { transform: translate(-90px, -40px) scale(0.95); } }
 .hero .wrap { z-index: 1; width: 100%; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: var(--sp-700); align-items: center; }
-.who { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-100); margin-bottom: var(--sp-300); }
+.who { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-100); margin-bottom: var(--sp-400); }
 .who .avatar { display: none; width: 44px; height: 44px; border-radius: var(--r-full); object-fit: cover; }
 .status { display: inline-flex; align-items: center; gap: var(--sp-75); padding: var(--sp-50) var(--sp-100); border-radius: var(--r-full); background: var(--panel); border: 1px solid var(--rule); color: var(--ink); }
 .status::before { content: ""; width: 8px; height: 8px; border-radius: var(--r-full); background: #1FAF6A; box-shadow: 0 0 0 0 rgba(31, 175, 106, 0.5); animation: ping 2.4s var(--ease) infinite; }
 @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(31, 175, 106, 0.5); } 70%, 100% { box-shadow: 0 0 0 8px rgba(31, 175, 106, 0); } }
-
-.lens { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--sp-75); margin-bottom: var(--sp-400); }
-.seg { position: relative; display: inline-flex; padding: var(--sp-50); gap: var(--sp-25); border: 1px solid var(--rule); border-radius: var(--r-full); background: var(--panel); box-shadow: var(--shadow); }
-.seg .pill { position: absolute; top: var(--sp-50); bottom: var(--sp-50); left: 0; width: 0; border-radius: var(--r-full); background: var(--ink); transition: transform .5s var(--ease), width .5s var(--ease); }
-.seg button { position: relative; z-index: 1; font: inherit; border: 0; cursor: pointer; padding: var(--sp-50) var(--sp-100); border-radius: var(--r-full); background: transparent; color: var(--muted); transition: color .3s var(--ease); }
-.seg button:hover { color: var(--ink); }
-.seg button[aria-pressed="true"] { color: var(--bg); }
-.no-pill .seg button[aria-pressed="true"] { background: var(--ink); }
 
 .hero h1 { max-width: 760px; }
 .hero h1 .hw { display: inline-block; }
@@ -235,14 +225,6 @@ section { padding-block: var(--sp-900) 0; position: relative; }
 .js .fade-up { opacity: 0; transform: translateY(var(--sp-300)); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--d, 0ms); }
 .js .ready .fade-up { opacity: 1; transform: none; }
 
-[data-lens-pane] { display: none; }
-html[data-lens="product"] [data-lens-pane~="product"],
-html[data-lens="ai"] [data-lens-pane~="ai"],
-html[data-lens="analytics"] [data-lens-pane~="analytics"] { display: block; animation: swap .6s var(--ease) both; }
-html[data-lens="product"] span[data-lens-pane~="product"],
-html[data-lens="ai"] span[data-lens-pane~="ai"],
-html[data-lens="analytics"] span[data-lens-pane~="analytics"] { display: inline; }
-@keyframes swap { from { opacity: 0; transform: translateY(var(--sp-75)); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
 
 .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-200); margin-top: var(--sp-500); max-width: 640px; }
 .stat { padding-top: var(--sp-100); border-top: 1px solid var(--rule); }
@@ -342,15 +324,12 @@ html[data-lens="analytics"] span[data-lens-pane~="analytics"] { display: inline;
 .job-head .co { color: var(--muted); font-weight: 400; }
 .job .blurb { margin-top: var(--sp-75); max-width: 680px; }
 .tracks { display: flex; flex-direction: column; gap: var(--sp-200); margin-top: var(--sp-300); }
-html[data-lens="ai"] .track-ai, html[data-lens="analytics"] .track-ai { order: -1; }
 .track h4 { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-75); margin-bottom: var(--sp-50); }
 .track .ctx { margin-bottom: var(--sp-200); }
 .figs { display: flex; flex-wrap: wrap; gap: var(--sp-200) var(--sp-500); margin-top: var(--sp-300); padding-top: var(--sp-200); border-top: 1px solid var(--rule); }
 .fig strong { display: block; }
 .fig span { display: block; color: var(--muted); }
 .grad { background: linear-gradient(90deg, var(--a1), var(--a2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.fit { display: none; padding: var(--sp-25) var(--sp-75); border-radius: var(--r-full); background: var(--accent-soft); color: var(--a1); }
-html[data-lens="product"] .track-pm .fit, html[data-lens="ai"] .track-ai .fit, html[data-lens="analytics"] .track-ai .fit { display: inline-block; }
 
 /* ---------- Tagline ---------- */
 .tagline { padding-block: var(--sp-900); }
@@ -363,9 +342,6 @@ html[data-lens="product"] .track-pm .fit, html[data-lens="ai"] .track-ai .fit, h
 /* ---------- Work ---------- */
 .cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-300); }
 .case { display: flex; flex-direction: column; gap: var(--sp-100); }
-html[data-lens="product"] .case { order: var(--o-product); }
-html[data-lens="ai"] .case { order: var(--o-ai); }
-html[data-lens="analytics"] .case { order: var(--o-analytics); }
 .case-top { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-100); }
 .tags { display: flex; flex-wrap: wrap; gap: var(--sp-50); }
 .tag { padding: var(--sp-25) var(--sp-75); border-radius: var(--r-full); border: 1px solid var(--rule); color: var(--muted); }
@@ -547,8 +523,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: va
   .two { grid-template-columns: minmax(0, 1fr); }
   .contact { padding: var(--sp-500) var(--sp-300); }
   .contact h2 { font-size: 2.25rem; line-height: 2.5rem; }
-  .seg button { padding-inline: var(--sp-75); }
-  .dots67 { grid-template-columns: repeat(17, minmax(0, 1fr)); }
+    .dots67 { grid-template-columns: repeat(17, minmax(0, 1fr)); }
 }
 </style>
 </head>
@@ -600,44 +575,16 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: va
           <span class="status caption-4 mono">Open to full time roles from 2027</span>
         </div>
 
-        <div class="lens fade-up" style="--d:80ms">
-          <span class="caption-3 eyebrow" id="lens-label">Hiring for</span>
-          <div class="seg title-4" role="group" aria-labelledby="lens-label">
-            <span class="pill" aria-hidden="true"></span>
-            <button type="button" data-lens-btn="product" aria-pressed="true">Product</button>
-            <button type="button" data-lens-btn="ai" aria-pressed="false">AI product</button>
-            <button type="button" data-lens-btn="analytics" aria-pressed="false">Analytics</button>
-          </div>
-        </div>
-
         <h1 class="heading-1">
           <span class="sr-only">I find the root cause first, then build the fix.</span>
           <span aria-hidden="true" id="headline">I find the root cause first,<br> then build the <span class="rot hw"><span class="serif on" data-w="fix">fix.</span><span class="serif" data-w="product">product.</span><span class="serif" data-w="model">model.</span><span class="serif" data-w="agent">agent.</span></span></span>
         </h1>
 
-        <div data-lens-pane="product">
-          <p class="sub title-2">Final year at <b>IIT Hyderabad</b>, most recently a product intern at <b>American Express</b>. I take a problem that looks like ten problems, trace it to the one thing actually breaking, then spec, prototype and ship around it.</p>
-          <div class="stats">
-            <div class="stat"><strong class="heading-5 mono grad" data-count="60" data-pre="~" data-suf="%">~60%</strong><span class="caption-2">shorter end to end cycle across 7 global teams</span></div>
-            <div class="stat"><strong class="heading-5 mono grad">3 wk → 1</strong><span class="caption-2">for stakeholder sign off</span></div>
-            <div class="stat"><strong class="heading-5 mono grad" data-count="65" data-pre="~" data-suf="%">~65%</strong><span class="caption-2">faster mockup turnaround</span></div>
-          </div>
-        </div>
-        <div data-lens-pane="ai">
-          <p class="sub title-2">Final year at <b>IIT Hyderabad</b>, most recently a product intern at <b>American Express</b>. I build with LLMs and agents as product tools, and judge them by the time and decisions they actually save.</p>
-          <div class="stats">
-            <div class="stat"><strong class="heading-5 mono grad">3–4 min</strong><span class="caption-2">to read BGV status, down from <span style="white-space:nowrap">1–2 hours</span></span></div>
-            <div class="stat"><strong class="heading-5 mono grad" data-count="97.1" data-suf="%">97.1%</strong><span class="caption-2">auto match rate from a 4 tier match engine</span></div>
-            <div class="stat"><strong class="heading-5 mono grad" data-count="65" data-pre="~" data-suf="%">~65%</strong><span class="caption-2">faster mockups with Figma and LLM tooling</span></div>
-          </div>
-        </div>
-        <div data-lens-pane="analytics">
-          <p class="sub title-2">Final year at <b>IIT Hyderabad</b>, most recently a product intern at <b>American Express</b>. I go from raw data to a decision: pipelines over millions of rows, models judged against a baseline, and thresholds set by what each error costs.</p>
-          <div class="stats">
-            <div class="stat"><strong class="heading-5 mono grad" data-count="0.945">0.945</strong><span class="caption-2">PR-AUC on 6.36M transactions</span></div>
-            <div class="stat"><strong class="heading-5 mono grad" data-count="43" data-pre="+" data-suf="%">+43%</strong><span class="caption-2">PR-AUC over an RFM baseline</span></div>
-            <div class="stat"><strong class="heading-5 mono grad" data-count="1155">1,155</strong><span class="caption-2">false hits traced to one misread code</span></div>
-          </div>
+        <p class="sub title-2 fade-up" style="--d:250ms">Final year at <b>IIT Hyderabad</b>, most recently a product intern at <b>American Express</b>. I work where product, AI and data meet: I take a problem that looks like ten problems, trace it to the one thing actually breaking, then build the fix, whether that’s a spec, a model or an agent.</p>
+        <div class="stats fade-up" style="--d:380ms">
+          <div class="stat"><strong class="heading-5 mono grad" data-count="60" data-pre="~" data-suf="%">~60%</strong><span class="caption-2">shorter end to end cycle across 7 global teams</span></div>
+          <div class="stat"><strong class="heading-5 mono grad" data-count="97.1" data-suf="%">97.1%</strong><span class="caption-2">auto match rate across 1,245 daily data feeds</span></div>
+          <div class="stat"><strong class="heading-5 mono grad">2nd</strong><span class="caption-2">across IITs at the EMC Business Contest 2026</span></div>
         </div>
 
         <div class="cta fade-up" style="--d:500ms">
@@ -781,8 +728,8 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: va
             <p class="blurb body-3 muted">Two tracks: product strategy and design for a global compliance workflow, and the data systems underneath it.</p>
           </div>
           <div class="tracks">
-            <div class="card track track-pm spot reveal">
-              <h4 class="title-1">Platform strategy and UX execution <span class="fit caption-3">Most relevant</span></h4>
+            <div class="card track spot reveal">
+              <h4 class="title-1">Platform strategy and UX execution</h4>
               <p class="ctx body-6 muted">A compliance workflow ran across 7 global teams with no system of record.</p>
               <ul class="body-3">
                 <li>Traced <b>5 failure modes to a single root cause</b> and specced a 6 module platform on a rules, system and signal architecture, consolidating 4 tools.</li>
@@ -796,8 +743,8 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: va
                 <div class="fig"><strong class="heading-5 mono grad">3 wk → 1</strong><span class="caption-5">stakeholder sign off</span></div>
               </div>
             </div>
-            <div class="card track track-ai spot reveal">
-              <h4 class="title-1">AI and technical product management <span class="fit caption-3">Most relevant</span></h4>
+            <div class="card track spot reveal">
+              <h4 class="title-1">AI and technical product management</h4>
               <p class="ctx body-6 muted">Leadership needed to see which systems were governed, and which weren’t.</p>
               <ul class="body-3">
                 <li>Built a <b>Python pipeline over 1,245 daily feeds</b> with a 4 tier fuzzy match engine.</li>
@@ -852,15 +799,12 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: va
           <h2 class="heading-3 sec" id="work-title">Seven <span class="serif">experiments.</span></h2>
         </div>
         <p class="body-3 muted reveal" style="--d:120ms">
-          <span data-lens-pane="product">Ordered for product roles.</span>
-          <span data-lens-pane="ai">Ordered for AI product roles.</span>
-          <span data-lens-pane="analytics">Ordered for analytics roles.</span>
           Each one runs problem, insight, decision, result.
         </p>
       </div>
 
       <div class="cases">
-        <article class="card case featured spot reveal" style="--o-product:-1;--o-ai:-1;--o-analytics:3">
+        <article class="card case featured spot reveal">
           <div class="feat-text">
             <div class="case-top"><div class="tags caption-4"><span class="tag">0 to 1 product</span><span class="tag">AI</span><span class="tag">EMC Business Contest 2026</span></div><span class="award caption-3"><i class="ph ph-trophy" aria-hidden="true"></i>2nd across IITs</span></div>
             <h3 class="heading-5">Kizuna <span class="kz" aria-hidden="true">絆</span></h3>
@@ -882,7 +826,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: va
             <span class="feat-badge caption-4"><i class="ph ph-play-circle" aria-hidden="true"></i>Live prototype inside</span>
           </a>
         </article>
-        <article class="card case spot lift reveal" style="--o-product:1;--o-ai:3;--o-analytics:3">
+        <article class="card case spot lift reveal">
           <div class="case-top"><div class="tags caption-4"><span class="tag">Product</span><span class="tag">Analytics</span></div><span class="caption-4 mono muted">Exp. 01</span></div>
           <h3 class="heading-6">Review-to-Roadmap</h3>
           <p class="body-6 muted">Journey and churn analysis for a two sided services marketplace.</p>
@@ -898,7 +842,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: va
           </dl>
         </article>
 
-        <article class="card case spot lift reveal" style="--o-product:4;--o-ai:2;--o-analytics:1">
+        <article class="card case spot lift reveal">
           <div class="case-top"><div class="tags caption-4"><span class="tag">Analytics</span><span class="tag">Applied ML</span></div><span class="caption-4 mono muted">Exp. 02</span></div>
           <h3 class="heading-6">Repeat purchase churn prediction</h3>
           <p class="body-6 muted">Which customers won’t buy again, and what it’s worth acting on.</p>
@@ -915,7 +859,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: va
           </dl>
         </article>
 
-        <article class="card case spot lift reveal" style="--o-product:3;--o-ai:1;--o-analytics:4">
+        <article class="card case spot lift reveal">
           <div class="case-top"><div class="tags caption-4"><span class="tag">AI agents</span><span class="tag">Hackathon</span></div><span class="caption-4 mono muted">Exp. 03</span></div>
           <h3 class="heading-6">Agentic BGV dashboard</h3>
           <p class="body-6 muted">Ask about employee background verification status in plain English. Get an answer, a chart and a next step.</p>
@@ -937,7 +881,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: va
           </dl>
         </article>
 
-        <article class="card case spot lift reveal" style="--o-product:5;--o-ai:4;--o-analytics:2">
+        <article class="card case spot lift reveal">
           <div class="case-top"><div class="tags caption-4"><span class="tag">Analytics</span><span class="tag">Risk</span></div><span class="caption-4 mono muted">Exp. 04</span></div>
           <h3 class="heading-6">SpendShield</h3>
           <p class="body-6 muted">Fraud risk policy and decision engine.</p>
@@ -954,7 +898,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: va
           </dl>
         </article>
 
-        <article class="card case spot lift reveal" style="--o-product:2;--o-ai:5;--o-analytics:6">
+        <article class="card case spot lift reveal">
           <div class="case-top"><div class="tags caption-4"><span class="tag">0 to 1 product</span></div><span class="caption-4 mono muted">Exp. 05</span></div>
           <h3 class="heading-6">Dazzle</h3>
           <p class="body-6 muted">Community events platform, from discovery to MVP.</p>
@@ -969,7 +913,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: va
           </dl>
         </article>
 
-        <article class="card case spot lift reveal" style="--o-product:6;--o-ai:6;--o-analytics:5">
+        <article class="card case spot lift reveal">
           <div class="case-top"><div class="tags caption-4"><span class="tag">Research</span><span class="tag">In progress</span></div><span class="caption-4 mono muted">Exp. 06</span></div>
           <h3 class="heading-6">ESG and CSR performance across Indian sectors</h3>
           <p class="body-6 muted">Research paper with Dr. Rana Pratap and Dr. Nakul, Department of Entrepreneurship and Management, IIT Hyderabad.</p>
@@ -1191,34 +1135,6 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: va
     clearInterval(rotTimer);
     rotTimer = setInterval(function () { showWord((rotIdx + 1) % rotWords.length); }, 2600);
   }
-  var lensWord = { product: 'product', ai: 'agent', analytics: 'model' };
-
-  /* ---------- Lens ---------- */
-  var lensBtns = $$('[data-lens-btn]'), pill = $('.seg .pill');
-  function movePill() {
-    var on = lensBtns.filter(function (b) { return b.getAttribute('aria-pressed') === 'true'; })[0];
-    if (!on || !pill) return;
-    pill.style.width = on.offsetWidth + 'px';
-    pill.style.transform = 'translateX(' + on.offsetLeft + 'px)';
-  }
-  function setLens(l, user) {
-    root.setAttribute('data-lens', l);
-    lensBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lens-btn') === l ? 'true' : 'false'); });
-    movePill();
-    if (user) {
-      var u = new URL(location.href);
-      if (l === 'product') u.searchParams.delete('for'); else u.searchParams.set('for', l);
-      history.replaceState(null, '', u);
-      var w = lensWord[l]; rotWords.forEach(function (s, i) { if (s.getAttribute('data-w') === w) showWord(i); });
-      startRot();
-      $$('[data-lens-pane~="' + l + '"] [data-count]').forEach(countUp);
-    }
-  }
-  setLens(root.getAttribute('data-lens') || 'product', false);
-  lensBtns.forEach(function (b) { b.addEventListener('click', function () { setLens(b.getAttribute('data-lens-btn'), true); }); });
-  addEventListener('resize', movePill);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(movePill);
-
   /* ---------- Headline split + intro ---------- */
   (function () {
     var h = $('#headline'), i = 0;
@@ -1239,8 +1155,6 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: va
     }
     walk(h);
     h.classList.add('split');
-    var startW = lensWord[root.getAttribute('data-lens')];
-    if (startW && startW !== 'product') rotWords.forEach(function (s, j) { s.classList.toggle('on', s.getAttribute('data-w') === startW); if (s.getAttribute('data-w') === startW) rotIdx = j; });
     setTimeout(function () { document.body.classList.add('ready'); }, 60);
     setTimeout(startRot, 1800);
   })();
