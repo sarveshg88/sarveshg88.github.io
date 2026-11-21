@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kizuna · Case study · Sarvesh Goyal</title>
+<meta name="description" content="Kizuna (絆), 2nd place across IITs at the EMC Business Contest 2026: workplace Japanese practice and readiness scoring for training centres preparing Indian care workers for Japan. Problem, insight, product, prototype, deck and poster from the EMC Business Contest 2026.">
+<meta property="og:title" content="Kizuna · Case study · Sarvesh Goyal">
+<meta property="og:description" content="Preparing India’s care workforce for Japan’s care floors. Research, product, pitch and a working prototype.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sarveshg88.github.io/projects/kizuna/">
+<meta property="og:image" content="https://sarveshg88.github.io/projects/kizuna/media/slides/slide-01.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F6F4EF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131209" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://sarveshg88.github.io/projects/kizuna/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232747C9'/%3E%3Ctext x='32' y='42' font-family='Geist,Segoe UI,sans-serif' font-size='26' font-weight='700' fill='white' text-anchor='middle'%3ESG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Fraunces:ital,opsz,wght@1,9..144,300..500&family=Noto+Sans+JP:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<script>
+  (function () {
+    var r = document.documentElement; r.classList.add('js');
+    try { var t = localStorage.getItem('sg-theme'); if (t) r.setAttribute('data-theme', t); } catch (e) {}
+  })();
+</script>
+<style>
+:root {
+  --bg: #F6F4EF; --grid: rgba(20, 18, 10, 0.05); --panel: #FFFFFF; --raise: #F1EEE7; --ink: #121212; --muted: #5F5E59; --rule: #E5E1D7;
+  --a1: #2747C9; --a2: #7A4BD6; --a3: #E0613F; --k: #1E388F; --k-soft: #E3E7F4; --ok: #1D7A51;
+  --nav: rgba(255, 255, 255, 0.72); --shadow: 0 1px 2px rgba(20, 18, 10, 0.04), 0 12px 32px -12px rgba(20, 18, 10, 0.12);
+  --font: "Geist", "Segoe UI", system-ui, sans-serif; --mono: "Geist Mono", ui-monospace, Consolas, monospace; --serif: "Fraunces", Georgia, serif; --jp: "Noto Sans JP", "Yu Gothic", "Hiragino Sans", sans-serif;
+  --sp-50: 4px; --sp-75: 8px; --sp-100: 12px; --sp-200: 16px; --sp-300: 24px; --sp-400: 32px; --sp-500: 40px; --sp-600: 48px; --sp-700: 64px; --sp-800: 80px; --sp-900: 96px;
+  --r-lg: 8px; --r-xl: 12px; --r-2xl: 16px; --r-3xl: 24px; --r-full: 9999px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #131209; --grid: rgba(255, 255, 240, 0.045); --panel: #1F1F1F; --raise: #272727; --ink: #EEEDE6; --muted: #A5A39A; --rule: #313029; --a1: #8FA7FF; --a2: #B99BFF; --a3: #FF9479; --k: #9DB0FF; --k-soft: #272727; --ok: #4CC38A; --nav: rgba(31, 31, 31, 0.72); --shadow: 0 1px 2px rgba(0,0,0,.3), 0 16px 40px -16px rgba(0,0,0,.6); color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #131209; --grid: rgba(255, 255, 240, 0.045); --panel: #1F1F1F; --raise: #272727; --ink: #EEEDE6; --muted: #A5A39A; --rule: #313029; --a1: #8FA7FF; --a2: #B99BFF; --a3: #FF9479; --k: #9DB0FF; --k-soft: #272727; --ok: #4CC38A; --nav: rgba(31, 31, 31, 0.72); --shadow: 0 1px 2px rgba(0,0,0,.3), 0 16px 40px -16px rgba(0,0,0,.6); color-scheme: dark; }
+
+.heading-1 { font-size: 3.75rem; line-height: 1; font-weight: 600; }
+.heading-3 { font-size: 2.25rem; line-height: 2.5rem; font-weight: 600; }
+.heading-4 { font-size: 1.875rem; line-height: 2.25rem; font-weight: 600; }
+.heading-5 { font-size: 1.5rem; line-height: 2rem; font-weight: 600; }
+.heading-6 { font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; }
+.title-2 { font-size: 1.125rem; line-height: 1.75rem; font-weight: 500; }
+.title-3 { font-size: 1rem; line-height: 1.5rem; font-weight: 500; }
+.title-4 { font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; }
+.body-3 { font-size: 1rem; line-height: 1.5rem; font-weight: 400; }
+.body-6 { font-size: 0.875rem; line-height: 1.25rem; font-weight: 400; }
+.button-md { font-size: 1rem; line-height: 1.5rem; font-weight: 600; }
+.button-sm { font-size: 0.875rem; line-height: 1.25rem; font-weight: 600; }
+.caption-2 { font-size: 0.875rem; line-height: 1.25rem; font-weight: 400; }
+.caption-3 { font-size: 0.75rem; line-height: 1rem; font-weight: 600; }
+.caption-4 { font-size: 0.75rem; line-height: 1rem; font-weight: 500; }
+.caption-5 { font-size: 0.75rem; line-height: 1rem; font-weight: 400; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.jp { font-family: var(--jp); }
+.muted { color: var(--muted); }
+.eyebrow { font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.serif { font-family: var(--serif); font-style: italic; font-weight: 400; font-variation-settings: "opsz" 144; background: linear-gradient(90deg, var(--a1), var(--a2) 55%, var(--a3)); -webkit-background-clip: text; background-clip: text; color: transparent; padding-inline: 0.12em 0.08em; margin-inline: -0.12em -0.08em; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--sp-900); -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 1rem; line-height: 1.5rem; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 32px 32px; -webkit-mask-image: radial-gradient(ellipse at 50% 20%, #000 30%, transparent 80%); mask-image: radial-gradient(ellipse at 50% 20%, #000 30%, transparent 80%); }
+h1, h2, h3, h4, p, figure, dl, dd { margin: 0; }
+h1, h2, h3 { text-wrap: balance; letter-spacing: -0.02em; }
+p, li, dd { text-wrap: pretty; }
+ul { margin: 0; padding-left: var(--sp-300); }
+li + li { margin-top: var(--sp-75); }
+b { font-weight: 600; }
+img, video { display: block; max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--a1); outline-offset: 3px; border-radius: 6px; }
+.skip { position: absolute; left: var(--sp-200); top: -100px; z-index: 100; padding: var(--sp-75) var(--sp-100); border-radius: var(--r-lg); background: var(--ink); color: var(--bg); text-decoration: none; }
+.skip:focus { top: var(--sp-200); }
+.wrap { max-width: 1160px; margin-inline: auto; padding-inline: var(--sp-300); }
+section { padding-top: var(--sp-900); }
+.sec-head { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--sp-300) var(--sp-500); align-items: end; margin-bottom: var(--sp-500); }
+.sec-head .kicker { display: flex; align-items: center; gap: var(--sp-100); margin-bottom: var(--sp-200); }
+.sec-head .kicker::before { content: ""; width: 24px; height: 1px; background: var(--muted); }
+.sec-head p { max-width: 460px; justify-self: end; }
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 60; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, var(--a1), var(--a2), var(--a3)); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-75); padding: var(--sp-75) var(--sp-100); border-radius: var(--r-lg); border: 1px solid var(--rule); background: var(--panel); color: var(--ink); text-decoration: none; cursor: pointer; font-family: inherit; transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease); }
+.btn:hover { border-color: var(--ink); }
+.btn:active { transform: scale(0.98); }
+.btn i { font-size: 1.125rem; }
+.btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.btn.primary:hover { box-shadow: 0 10px 28px -10px color-mix(in srgb, var(--a1) 70%, transparent); }
+.btn.lg { padding: var(--sp-100) var(--sp-200); border-radius: var(--r-xl); }
+.btn.icon { padding: var(--sp-75); }
+
+.nav { position: fixed; top: var(--sp-200); left: 50%; transform: translateX(-50%); z-index: 50; display: flex; align-items: center; gap: var(--sp-50); padding: var(--sp-75); background: var(--nav); border: 1px solid var(--rule); border-radius: var(--r-full); box-shadow: var(--shadow); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); max-width: calc(100vw - var(--sp-400)); }
+.nav .back { display: inline-flex; align-items: center; gap: var(--sp-75); padding: var(--sp-50) var(--sp-100) var(--sp-50) var(--sp-50); text-decoration: none; border-radius: var(--r-full); white-space: nowrap; }
+.nav .back b { display: grid; place-items: center; width: 28px; height: 28px; border-radius: var(--r-full); background: linear-gradient(135deg, var(--a1), var(--a2)); color: #fff; font-size: 0.75rem; }
+.nav .back i { transition: transform .3s var(--ease); }
+.nav .back:hover i { transform: translateX(-3px); }
+.nav-links { display: flex; gap: 2px; }
+.nav-links a { padding: var(--sp-75) var(--sp-100); border-radius: var(--r-full); text-decoration: none; color: var(--muted); transition: color .3s var(--ease), background-color .3s var(--ease); white-space: nowrap; }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a[aria-current="true"] { color: var(--ink); background: var(--raise); }
+.nav .btn { border-radius: var(--r-full); }
+
+.card { position: relative; background: var(--panel); border: 1px solid var(--rule); border-radius: var(--r-2xl); padding: var(--sp-300); box-shadow: var(--shadow); }
+.spot { isolation: isolate; overflow: hidden; }
+.spot::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .4s var(--ease); background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--a1) 9%, transparent), transparent 70%); }
+.spot:hover::before { opacity: 1; }
+.tag { display: inline-block; padding: 2px var(--sp-75); border-radius: var(--r-full); border: 1px solid var(--rule); color: var(--muted); }
+.award { display: inline-flex; align-items: center; gap: var(--sp-50); padding: 2px var(--sp-100); border-radius: var(--r-full); font-weight: 600; background: linear-gradient(90deg, color-mix(in srgb, var(--a3) 16%, var(--panel)), color-mix(in srgb, var(--a2) 14%, var(--panel))); border: 1px solid color-mix(in srgb, var(--a3) 35%, var(--rule)); }
+.award i { color: var(--a3); }
+.tag.prop { border-color: color-mix(in srgb, var(--a3) 45%, var(--rule)); color: var(--a3); }
+
+/* Hero */
+.hero { position: relative; padding-top: calc(var(--sp-900) + var(--sp-500)); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: var(--sp-700); align-items: center; }
+.crumbs { display: flex; flex-wrap: wrap; gap: var(--sp-75); margin-bottom: var(--sp-300); }
+.title-row { display: flex; align-items: center; gap: var(--sp-300); }
+.kanji { flex: none; display: grid; place-items: center; width: 96px; height: 96px; border: 3px solid var(--k); border-radius: var(--r-xl); color: var(--k); font-family: var(--jp); font-weight: 700; font-size: 3.75rem; line-height: 1; }
+.hero h1 .sub { display: block; margin-top: var(--sp-100); font-size: 1.125rem; line-height: 1.75rem; font-weight: 400; letter-spacing: 0; color: var(--muted); }
+.lede { max-width: 640px; margin-top: var(--sp-400); color: var(--muted); }
+.lede b { color: var(--ink); font-weight: 500; }
+.cta { display: flex; flex-wrap: wrap; gap: var(--sp-100); margin-top: var(--sp-400); }
+.meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-200); margin-top: var(--sp-500); max-width: 680px; }
+.meta div { padding-top: var(--sp-100); border-top: 1px solid var(--rule); }
+.meta span { display: block; }
+.poster-frame { position: relative; display: block; perspective: 900px; text-decoration: none; }
+.poster-frame .halo { position: absolute; inset: -12px; border-radius: 28px; background: conic-gradient(from var(--ang, 0deg), var(--a1), var(--a2), var(--a3), var(--a1)); filter: blur(28px); opacity: 0.35; animation: spin 14s linear infinite; }
+@property --ang { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes spin { to { --ang: 360deg; } }
+.poster-frame .tilt { position: relative; border-radius: var(--r-2xl); transition: transform .6s var(--ease); }
+.poster-frame img { width: 100%; height: auto; border-radius: var(--r-2xl); border: 1px solid var(--rule); background: #EFECE4; }
+.poster-frame .badge { position: absolute; left: var(--sp-200); bottom: var(--sp-200); display: inline-flex; align-items: center; gap: var(--sp-75); padding: var(--sp-50) var(--sp-100); border-radius: var(--r-full); background: var(--nav); border: 1px solid var(--rule); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-200); }
+.stat strong { display: block; font-family: var(--mono); font-weight: 600; font-size: 1.875rem; line-height: 2.25rem; background: linear-gradient(90deg, var(--a1), var(--a2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stat p { margin-top: var(--sp-75); }
+.stat .src { display: block; margin-top: var(--sp-100); padding-top: var(--sp-100); border-top: 1px dashed var(--rule); color: var(--muted); }
+.bars { display: grid; gap: var(--sp-75); }
+.brow { display: grid; grid-template-columns: 96px minmax(0, 1fr) 64px; align-items: center; gap: var(--sp-100); }
+.brow .bar { height: 12px; border-radius: var(--r-full); background: color-mix(in srgb, var(--ink) 7%, transparent); overflow: hidden; }
+.brow .bar i { display: block; height: 100%; border-radius: var(--r-full); background: color-mix(in srgb, var(--ink) 28%, transparent); transform-origin: 0 50%; transform: scaleX(0); transition: transform 1.4s var(--ease); }
+.brow.india .bar i { background: linear-gradient(90deg, var(--a3), var(--a2)); min-width: 4px; }
+.in .brow .bar i { transform: scaleX(var(--v)); }
+.brow.india { color: var(--a3); font-weight: 600; }
+.brow b { text-align: right; font-weight: 500; }
+
+/* Insight route */
+.route { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.3fr); gap: var(--sp-300); align-items: stretch; position: relative; }
+.route .rt { display: flex; flex-direction: column; gap: var(--sp-75); padding: var(--sp-200); border-radius: var(--r-xl); border: 1px solid var(--rule); background: var(--panel); position: relative; }
+.route .rt:not(:last-child)::after { content: ""; position: absolute; top: 50%; left: calc(100% + 4px); width: 16px; height: 2px; background: repeating-linear-gradient(90deg, var(--a2) 0 4px, transparent 4px 8px); background-size: 16px 2px; animation: dash 1s linear infinite; }
+@keyframes dash { to { background-position: 16px 0; } }
+.route .rt.floor { border: 1.5px solid var(--k); background: color-mix(in srgb, var(--k) 6%, var(--panel)); }
+.route .rt.floor .here { align-self: flex-start; padding: 2px var(--sp-75); border-radius: var(--r-full); background: var(--k); color: #fff; }
+.big-quote { max-width: 900px; margin-top: var(--sp-600); }
+
+/* Modes */
+.modes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-300); }
+.mode { display: flex; flex-direction: column; gap: var(--sp-100); }
+.mode .ltr { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: var(--r-xl); background: var(--k-soft); color: var(--k); font-family: var(--mono); font-weight: 600; }
+.mode .eg { margin-top: auto; padding: var(--sp-200); border-radius: var(--r-xl); background: var(--raise); display: grid; gap: var(--sp-75); }
+.bubble { padding: var(--sp-75) var(--sp-100); border-radius: var(--r-xl); background: var(--panel); border: 1px solid var(--rule); max-width: 92%; }
+.bubble.me { justify-self: end; background: color-mix(in srgb, var(--k) 10%, var(--panel)); border-color: color-mix(in srgb, var(--k) 25%, var(--rule)); }
+.bubble small { display: block; color: var(--muted); }
+.check { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: var(--sp-75); align-items: start; }
+.check i { font-size: 1rem; margin-top: 2px; }
+.check i.y { color: var(--ok); } .check i.n { color: var(--a3); }
+.flag { box-shadow: inset 0 -0.45em 0 color-mix(in srgb, var(--a3) 35%, transparent); }
+.roles3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-300); margin-top: var(--sp-300); }
+.roles3 .card { display: flex; gap: var(--sp-200); align-items: flex-start; }
+.roles3 .ico { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: var(--r-xl); background: var(--raise); color: var(--a2); font-size: 1.25rem; }
+
+/* Prototype */
+.proto { padding: 0; overflow: hidden; }
+.proto-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-100); padding: var(--sp-100) var(--sp-200); border-bottom: 1px solid var(--rule); }
+.dots3 { display: flex; gap: 6px; }
+.dots3 i { width: 10px; height: 10px; border-radius: var(--r-full); background: var(--rule); }
+.proto iframe { display: block; width: 100%; height: 780px; border: 0; background: #EFECE4; }
+.proto-note { padding: var(--sp-200); border-top: 1px solid var(--rule); color: var(--muted); display: flex; gap: var(--sp-100); align-items: baseline; }
+.proto-note i { color: var(--a2); }
+.feats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-200); margin-top: var(--sp-300); }
+.feats div { padding-top: var(--sp-100); border-top: 1px solid var(--rule); }
+
+/* Video */
+.video { padding: var(--sp-100); }
+.video video { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: var(--r-xl); background: #000; }
+
+/* Deck */
+.deck { padding: 0; overflow: hidden; }
+.deck-stage { position: relative; aspect-ratio: 16 / 9; background: #EFECE4; overflow: hidden; }
+.deck-stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transform: scale(1.015); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.deck-stage img.on { opacity: 1; transform: none; }
+.deck-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 44px; height: 44px; border-radius: var(--r-full); border: 1px solid var(--rule); background: var(--nav); color: var(--ink); display: grid; place-items: center; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: transform .3s var(--ease); font-size: 1.25rem; }
+.deck-nav:hover { transform: translateY(-50%) scale(1.06); }
+.deck-nav.prev { left: var(--sp-200); } .deck-nav.next { right: var(--sp-200); }
+.deck-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-200); padding: var(--sp-200); border-top: 1px solid var(--rule); }
+.thumbs { display: flex; gap: var(--sp-75); overflow-x: auto; padding: var(--sp-200); border-top: 1px solid var(--rule); scrollbar-width: thin; }
+.thumbs button { flex: none; width: 112px; padding: 0; border: 2px solid transparent; border-radius: var(--r-lg); overflow: hidden; cursor: pointer; background: none; opacity: 0.6; transition: opacity .3s var(--ease), border-color .3s var(--ease); }
+.thumbs button:hover { opacity: 1; }
+.thumbs button[aria-current="true"] { opacity: 1; border-color: var(--a1); }
+.thumbs img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.downloads { display: flex; flex-wrap: wrap; gap: var(--sp-75); }
+
+/* Poster */
+.poster-wrap { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr); gap: var(--sp-500); align-items: start; }
+.zoom { position: relative; display: block; border-radius: var(--r-2xl); overflow: hidden; border: 1px solid var(--rule); cursor: zoom-in; background: #EFECE4; }
+.zoom img { width: 100%; height: auto; transition: transform .2s ease-out; transform-origin: var(--zx, 50%) var(--zy, 50%); }
+.zoom:hover img { transform: scale(2.2); }
+.versions { display: grid; gap: 0; }
+.ver { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: var(--sp-200); padding-block: var(--sp-200); border-top: 1px solid var(--rule); }
+.ver:first-child { border-top: 0; padding-top: 0; }
+.ver b.mono { color: var(--a1); }
+
+/* Business */
+.biz { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-300); }
+.pilot { margin-top: var(--sp-300); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--sp-500); background: var(--k); color: #F5F4EF; border-color: transparent; }
+.pilot .eyebrow { color: #C7CEEE; }
+.pilot ol { margin: 0; padding-left: var(--sp-300); }
+.pilot li::marker { color: #C7CEEE; font-family: var(--mono); }
+.pilot .muted { color: #C7CEEE; }
+.road { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: var(--sp-300); position: relative; }
+.road::before { content: ""; position: absolute; left: 8px; right: 8px; top: 7px; height: 2px; background: color-mix(in srgb, #F5F4EF 25%, transparent); }
+.road div { position: relative; padding-top: var(--sp-300); padding-right: var(--sp-100); }
+.road div::before { content: ""; position: absolute; left: 0; top: 0; width: 16px; height: 16px; border-radius: var(--r-full); background: #F5F4EF; box-shadow: 0 0 0 4px color-mix(in srgb, #F5F4EF 20%, transparent); }
+.road div:not(:first-child)::before { background: var(--k); border: 2px solid #F5F4EF; }
+
+/* Decisions */
+.decisions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-300); }
+.dec { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: var(--sp-200); }
+.dec .ico { display: grid; place-items: center; width: 40px; height: 40px; border-radius: var(--r-xl); background: var(--raise); color: var(--a3); font-size: 1.25rem; }
+.dec h3 { margin-bottom: var(--sp-50); }
+
+/* Next */
+.endcap { margin-top: var(--sp-900); padding: var(--sp-600); border-radius: var(--r-3xl); background: #121212; color: #F2F1EC; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-300); }
+:root[data-theme="dark"] .endcap { background: #1F1F1F; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .endcap { background: #1F1F1F; } }
+.endcap p { color: #B9B8B1; margin-top: var(--sp-75); max-width: 520px; }
+.endcap .serif { background: linear-gradient(90deg, #8FA7FF, #B99BFF 55%, #FF9479); -webkit-background-clip: text; background-clip: text; }
+.endcap .row { display: flex; flex-wrap: wrap; gap: var(--sp-100); }
+.endcap .btn { background: transparent; color: #F2F1EC; border-color: #3A3A36; }
+.endcap .btn:hover { border-color: #F2F1EC; }
+.endcap .btn.primary { background: #F2F1EC; color: #121212; border-color: #F2F1EC; }
+footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--sp-75); padding-block: var(--sp-400) var(--sp-500); color: var(--muted); }
+.sources { margin-top: var(--sp-500); color: var(--muted); }
+.sources summary { cursor: pointer; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.sources ul { margin-top: var(--sp-200); columns: 2; column-gap: var(--sp-500); }
+.sources li { break-inside: avoid; }
+
+.js .reveal { opacity: 0; transform: translateY(var(--sp-400)); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--d, 0ms); }
+.js .reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; transition-delay: 0ms !important; }
+  .zoom:hover img { transform: none; }
+}
+
+@media (max-width: 1000px) {
+  .nav-links { display: none; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr) 260px; gap: var(--sp-500); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .route { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .route .rt:nth-child(2)::after { display: none; }
+  .modes, .roles3, .biz { grid-template-columns: minmax(0, 1fr); }
+  .feats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .poster-wrap, .decisions, .pilot { grid-template-columns: minmax(0, 1fr); }
+  .sec-head { grid-template-columns: minmax(0, 1fr); }
+  .sec-head p { justify-self: start; }
+}
+@media (max-width: 720px) {
+  .wrap { padding-inline: var(--sp-200); }
+  section { padding-top: var(--sp-800); }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .heading-1 { font-size: 2.25rem; line-height: 2.5rem; }
+  .heading-3 { font-size: 1.875rem; line-height: 2.25rem; }
+  .kanji { width: 64px; height: 64px; font-size: 2.25rem; border-width: 2px; }
+  .title-row { gap: var(--sp-200); }
+  .meta { grid-template-columns: minmax(0, 1fr); gap: var(--sp-100); }
+  .cta .btn { flex: 1 1 100%; }
+  .stats { grid-template-columns: minmax(0, 1fr); }
+  .route { grid-template-columns: minmax(0, 1fr); }
+  .route .rt::after { display: none; }
+  .proto iframe { height: 640px; }
+  .feats { grid-template-columns: minmax(0, 1fr); }
+  .deck-nav { width: 36px; height: 36px; }
+  .deck-nav.prev { left: var(--sp-75); } .deck-nav.next { right: var(--sp-75); }
+  .road { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--sp-300); }
+  .road::before { display: none; }
+  .endcap { padding: var(--sp-400) var(--sp-300); }
+  .card { padding: var(--sp-200); }
+  .sources ul { columns: 1; }
+  .nav .back span.full { display: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip button-sm" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="nav" aria-label="Site">
+  <a class="back title-4" href="../../#work"><b>SG</b><i class="ph ph-arrow-left" aria-hidden="true"></i><span class="full">Sarvesh Goyal</span></a>
+  <nav class="nav-links title-4" aria-label="Sections">
+    <a href="#problem">Problem</a>
+    <a href="#product">Product</a>
+    <a href="#prototype">Prototype</a>
+    <a href="#deck">Deck</a>
+    <a href="#model">Model</a>
+  </nav>
+  <button class="btn icon theme-toggle" type="button" aria-label="Switch colour theme"><i class="ph ph-moon" aria-hidden="true"></i></button>
+  <a class="btn primary button-sm" href="app/" target="_blank" rel="noopener"><i class="ph ph-play" aria-hidden="true"></i>Prototype</a>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="crumbs caption-4">
+          <span class="award"><i class="ph ph-trophy" aria-hidden="true"></i>2nd place across IITs</span><span class="tag">Case study</span><span class="tag">0 to 1 product</span><span class="tag">AI</span><span class="tag">EMC Business Contest 2026</span>
+        </div>
+        <div class="title-row reveal">
+          <span class="kanji" aria-hidden="true">絆</span>
+          <h1 class="heading-1">Kizuna<span class="sub">kizuna (絆): the bond between people</span></h1>
+        </div>
+        <p class="lede title-2 reveal" style="--d:100ms">Preparing <b>India’s care workforce</b> for the world’s ageing societies, starting with <b>Japan</b>. A practice platform that training centres use to get care workers ready for the moments their tests don’t cover, and to <b>see who is ready</b>.</p>
+        <div class="cta reveal" style="--d:200ms">
+          <a class="btn primary button-md lg" href="app/" target="_blank" rel="noopener"><i class="ph ph-play" aria-hidden="true"></i>Try the prototype</a>
+          <a class="btn button-md lg" href="#explainer"><i class="ph ph-video" aria-hidden="true"></i>Watch the explainer</a>
+          <a class="btn button-md lg" href="media/Kizuna-Pitch-Deck.pdf" target="_blank" rel="noopener"><i class="ph ph-presentation-chart" aria-hidden="true"></i>Pitch deck</a>
+        </div>
+        <div class="meta reveal" style="--d:300ms">
+          <div><span class="caption-3 eyebrow">Contest</span><span class="body-6">EMC Business Contest 2026, IIT Hyderabad × Musashino University</span></div>
+          <div><span class="caption-3 eyebrow">My role</span><span class="body-6">Research, product, poster, pitch and prototype, Oct to Nov 2026</span></div>
+          <div><span class="caption-3 eyebrow">Result</span><span class="body-6"><b>2nd place across IITs</b> at the regional pitch, 19 Nov 2026</span></div>
+        </div>
+      </div>
+      <a class="poster-frame reveal" style="--d:150ms" href="#poster" aria-label="See the contest poster">
+        <span class="halo" aria-hidden="true"></span>
+        <span class="tilt" id="tilt" style="display:block">
+          <img src="media/kizuna-poster-sm.jpg" alt="Kizuna contest poster: problem, solution, market, competition and business model" width="900" height="1272">
+          <span class="badge caption-4"><i class="ph ph-magnifying-glass-plus" aria-hidden="true"></i>A0 poster, v7</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="reveal">
+          <div class="kicker caption-3 eyebrow">The need</div>
+          <h2 class="heading-3">Japan needs carers. <span class="serif">India sends almost none.</span></h2>
+        </div>
+        <p class="body-3 muted reveal" style="--d:120ms">India sends nurses all over the world, but barely any to Japan. I started by asking why not so far, and what is changing now.</p>
+      </div>
+      <div class="stats">
+        <div class="card stat spot reveal"><strong data-count="29.4" data-suf="%">29.4%</strong><p class="body-6">of Japan’s population was aged 65 or older, 36.22 million people.</p><span class="src caption-5">Cabinet Office, 1 Oct 2025</span></div>
+        <div class="card stat spot reveal" style="--d:80ms"><strong data-count="135000">135,000</strong><p class="body-6">planned maximum intake on the nursing care skilled worker route, over five years. A ceiling, not vacancies.</p><span class="src caption-5">Immigration Services Agency, Apr 2024 to Mar 2029</span></div>
+        <div class="card stat spot reveal" style="--d:160ms"><strong>≈300</strong><p class="body-6">Indian care workers on that route, against 21,139 from Indonesia.</p><span class="src caption-5">Kyodo News, Jun 2025 · ISA, Dec 2025</span></div>
+        <div class="card stat spot reveal" style="--d:240ms"><strong data-count="14" data-suf="×">14×</strong><p class="body-6">more Japanese learners in Indonesia than in India: 732,914 vs 52,946.</p><span class="src caption-5">Japan Foundation survey, 2024</span></div>
+      </div>
+
+      <div class="card reveal" style="margin-top:var(--sp-300)">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--sp-100);margin-bottom:var(--sp-200)">
+          <span class="caption-3 eyebrow">Skilled worker care staff in Japan, by nationality</span>
+          <span class="caption-5 muted">ISA, 31 Dec 2025 (preliminary) · India, end June 2025 (Kyodo)</span>
+        </div>
+        <div class="bars caption-4">
+          <div class="brow"><span>Indonesia</span><div class="bar"><i style="--v:1"></i></div><b class="mono">21,139</b></div>
+          <div class="brow"><span>Myanmar</span><div class="bar"><i style="--v:.937"></i></div><b class="mono">19,803</b></div>
+          <div class="brow"><span>Vietnam</span><div class="bar"><i style="--v:.492"></i></div><b class="mono">10,401</b></div>
+          <div class="brow"><span>Nepal</span><div class="bar"><i style="--v:.284"></i></div><b class="mono">6,013</b></div>
+          <div class="brow"><span>Philippines</span><div class="bar"><i style="--v:.27"></i></div><b class="mono">5,704</b></div>
+          <div class="brow"><span>China</span><div class="bar"><i style="--v:.063"></i></div><b class="mono">1,340</b></div>
+          <div class="brow india"><span>India</span><div class="bar"><i style="--v:.014"></i></div><b class="mono">≈300</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHT -->
+  <section id="insight">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="reveal">
+          <div class="kicker caption-3 eyebrow">The insight</div>
+          <h2 class="heading-3">The gap isn’t people. <span class="serif">It’s readiness.</span></h2>
+        </div>
+        <p class="body-3 muted reveal" style="--d:120ms">The route asks for three tests. None of them checks whether a candidate can handle day one on a Japanese care floor.</p>
+      </div>
+      <div class="route">
+        <div class="rt reveal"><span class="caption-3 eyebrow">Test 1</span><b class="title-3">Japanese language</b><span class="caption-5 muted">JFT‑Basic or JLPT N4</span></div>
+        <div class="rt reveal" style="--d:100ms"><span class="caption-3 eyebrow">Test 2</span><b class="title-3">Care skills</b><span class="caption-5 muted">Nursing Care Skills Evaluation Test</span></div>
+        <div class="rt reveal" style="--d:200ms"><span class="caption-3 eyebrow">Test 3</span><b class="title-3">Care Japanese</b><span class="caption-5 muted">A third of it is care documents</span></div>
+        <div class="rt floor reveal" style="--d:300ms"><span class="here caption-3">Kizuna focuses here</span><b class="title-3">Day one on the care floor</b><span class="caption-5 muted">Calming a resident who refuses care. Reporting a fall to the shift leader. Writing a factual care record. In Japanese.</span></div>
+      </div>
+      <p class="big-quote heading-4 reveal">Passing three tests isn’t the same as calming a resident who refuses care, or <span class="serif">reporting a fall in Japanese.</span></p>
+    </div>
+  </section>
+
+  <!-- PRODUCT -->
+  <section id="product">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="reveal">
+          <div class="kicker caption-3 eyebrow">The product</div>
+          <h2 class="heading-3">Three moments, <span class="serif">practised until they pass.</span></h2>
+        </div>
+        <p class="body-3 muted reveal" style="--d:120ms">Trainees practise a scenario, get an instant score against the centre’s rubric, retry, and the results roll up into a readiness band for trainers and the centre.</p>
+      </div>
+      <div class="modes">
+        <article class="card mode spot reveal">
+          <span class="ltr">A</span>
+          <h3 class="heading-6">Respond</h3>
+          <p class="body-6 muted">A resident refuses care, is confused or distressed. Respond with respect and the right Japanese.</p>
+          <div class="eg caption-4">
+            <div class="bubble"><span class="jp">今日はお風呂、入りたくないなあ…</span><small>I don’t feel like a bath today…</small></div>
+            <div class="bubble me"><span class="jp">そうなんですね。では、足湯から始めてみませんか？</span><small>I see. Shall we start with a warm foot bath?</small></div>
+            <span class="muted">Feedback: refusal acknowledged first; ませんか makes it an offer, not an order.</span>
+          </div>
+        </article>
+        <article class="card mode spot reveal" style="--d:100ms">
+          <span class="ltr">B</span>
+          <h3 class="heading-6">Report</h3>
+          <p class="body-6 muted">Something goes wrong. Give the shift leader a clear four part report.</p>
+          <div class="eg caption-4">
+            <div class="check"><i class="ph ph-check-circle y"></i><span><b>What happened</b> · time and what you found</span></div>
+            <div class="check"><i class="ph ph-check-circle y"></i><span><b>Condition</b> · conscious, where it hurts</span></div>
+            <div class="check"><i class="ph ph-check-circle y"></i><span><b>Action</b> · not moved, staying with her</span></div>
+            <div class="check"><i class="ph ph-check-circle y"></i><span><b>Help needed</b> · a polite request for a nurse</span></div>
+            <div class="check"><i class="ph ph-warning-circle n"></i><span><b>Observed, not assumed</b> · “she fell” is flagged when she was only found on the floor</span></div>
+          </div>
+        </article>
+        <article class="card mode spot reveal" style="--d:200ms">
+          <span class="ltr">C</span>
+          <h3 class="heading-6">Document</h3>
+          <p class="body-6 muted">At the end of a shift, turn what happened into a factual care record. Opinions get flagged.</p>
+          <div class="eg caption-4">
+            <span><b class="mono">10:15</b> Offered a bath. Resident said <span class="jp">「今日は入りたくない」</span>.</span>
+            <span><b class="mono">10:30</b> Offered a foot bath; she agreed.</span>
+            <span>She was <span class="flag">being difficult</span> today.</span>
+            <span class="muted">Flagged: a judgement, not a fact. Record her own words instead.</span>
+          </div>
+        </article>
+      </div>
+      <div class="roles3">
+        <div class="card spot reveal"><span class="ico"><i class="ph ph-buildings" aria-hidden="true"></i></span><div><span class="caption-3 eyebrow">Buyer</span><h3 class="title-2">Training centre</h3><p class="body-6 muted">Deploys it to every batch and decides with evidence who goes to Japan.</p></div></div>
+        <div class="card spot reveal" style="--d:100ms"><span class="ico"><i class="ph ph-chalkboard-teacher" aria-hidden="true"></i></span><div><span class="caption-3 eyebrow">User</span><h3 class="title-2">Trainer</h3><p class="body-6 muted">Assigns scenarios, sees each trainee’s gaps, coaches the weakest skills.</p></div></div>
+        <div class="card spot reveal" style="--d:200ms"><span class="ico"><i class="ph ph-student" aria-hidden="true"></i></span><div><span class="caption-3 eyebrow">User · free</span><h3 class="title-2">Trainee</h3><p class="body-6 muted">Practises real care floor moments, gets feedback and a model answer, retries.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROTOTYPE -->
+  <section id="prototype">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="reveal">
+          <div class="kicker caption-3 eyebrow">Working prototype</div>
+          <h2 class="heading-3">Try it, <span class="serif">right here.</span></h2>
+        </div>
+        <p class="body-3 muted reveal" style="--d:120ms">Switch between the Trainee, Trainer and Centre views at the top. Your attempts as Priya update her row in the trainer and centre views.</p>
+      </div>
+      <div class="card proto reveal">
+        <div class="proto-bar">
+          <div class="dots3" aria-hidden="true"><i></i><i></i><i></i></div>
+          <span class="caption-4 mono muted">sarveshg88.github.io/projects/kizuna/app</span>
+          <a class="btn button-sm" href="app/" target="_blank" rel="noopener"><i class="ph ph-arrows-out" aria-hidden="true"></i>Open full screen</a>
+        </div>
+        <iframe src="app/" title="Kizuna prototype" loading="lazy"></iframe>
+        <p class="proto-note caption-2"><i class="ph ph-info" aria-hidden="true"></i><span>Illustrative scenarios and a sample batch; the Japanese is to be reviewed by native care educators before any pilot. In this hosted version AI feedback is off: answers are scored by the instant rubric checks and the resident replies from a script.</span></p>
+      </div>
+      <div class="feats">
+        <div class="reveal"><b class="title-3">Instant checklist</b><p class="body-6 muted">Scores the four parts of a report as you type.</p></div>
+        <div class="reveal" style="--d:80ms"><b class="title-3">Catches assumptions</b><p class="body-6 muted">Flags “she fell” when the trainee only found her on the floor.</p></div>
+        <div class="reveal" style="--d:160ms"><b class="title-3">Claude feedback</b><p class="body-6 muted">Explains the fix and writes a model answer, when an API key is set.</p></div>
+        <div class="reveal" style="--d:240ms"><b class="title-3">Readiness bands</b><p class="body-6 muted">Ready for placement, Almost ready, or Not yet, per candidate.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section id="explainer">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="reveal">
+          <div class="kicker caption-3 eyebrow">Explainer</div>
+          <h2 class="heading-3">The whole idea <span class="serif">in seven minutes.</span></h2>
+        </div>
+        <p class="body-3 muted reveal" style="--d:120ms">Solution, market potential, competition and business model, narrated.</p>
+      </div>
+      <div class="card video reveal">
+        <video controls preload="none" playsinline poster="media/explainer-poster.jpg" width="1920" height="1080">
+          <source src="media/Kizuna-explainer.mp4" type="video/mp4">
+          Your browser can’t play this video. <a href="media/Kizuna-explainer.mp4">Download it instead</a>.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- DECK -->
+  <section id="deck">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="reveal">
+          <div class="kicker caption-3 eyebrow">Pitch deck</div>
+          <h2 class="heading-3">Fifteen slides, <span class="serif">every number sourced.</span></h2>
+        </div>
+        <p class="body-3 muted reveal" style="--d:120ms">Use the arrows or your keyboard. The full PDF adds seven appendix slides with the data tables and sources.</p>
+      </div>
+      <div class="card deck reveal" id="deckCard">
+        <div class="deck-stage" id="deckStage" tabindex="0" aria-roledescription="carousel" aria-label="Pitch deck slides">
+          <button class="deck-nav prev" type="button" aria-label="Previous slide"><i class="ph ph-caret-left"></i></button>
+          <button class="deck-nav next" type="button" aria-label="Next slide"><i class="ph ph-caret-right"></i></button>
+        </div>
+        <div class="deck-foot">
+          <span class="caption-4 mono muted" id="deckCount" aria-live="polite">01 / 15</span>
+          <div class="downloads">
+            <a class="btn button-sm" href="media/Kizuna-Pitch-Deck.pdf" target="_blank" rel="noopener"><i class="ph ph-file-pdf" aria-hidden="true"></i>Full deck (PDF, 22 slides)</a>
+            <a class="btn button-sm" href="media/Kizuna-3-Slide-Pitch.pptx" download><i class="ph ph-microsoft-powerpoint-logo" aria-hidden="true"></i>3 slide pitch (PPTX)</a>
+          </div>
+        </div>
+        <div class="thumbs" id="thumbs" aria-label="Slide thumbnails"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTER -->
+  <section id="poster">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="reveal">
+          <div class="kicker caption-3 eyebrow">Contest poster</div>
+          <h2 class="heading-3">Seven versions <span class="serif">to get it honest.</span></h2>
+        </div>
+        <p class="body-3 muted reveal" style="--d:120ms">Hover to zoom, or open the full resolution file. Judged on global perspective, technology and societal impact.</p>
+      </div>
+      <div class="poster-wrap">
+        <a class="zoom reveal" id="zoom" href="media/kizuna-poster.jpg" target="_blank" rel="noopener" aria-label="Open the full resolution poster">
+          <img src="media/kizuna-poster-sm.jpg" data-full="media/kizuna-poster.jpg" alt="Kizuna A0 poster for the EMC Business Contest 2026" width="900" height="1272" loading="lazy">
+        </a>
+        <div class="card reveal" style="--d:120ms">
+          <span class="caption-3 eyebrow">How it evolved</span>
+          <div class="versions" style="margin-top:var(--sp-200)">
+            <div class="ver"><b class="mono caption-3">v1</b><p class="body-6"><b>First full draft.</b> <span class="muted">Statistics heavy, framed as job placement.</span></p></div>
+            <div class="ver"><b class="mono caption-3">v3</b><p class="body-6"><b>No unsupported claims.</b> <span class="muted">Headline reframed to “more accessible”; prices, fees, named competitors and the nationality chart came out; “proposed” labels went in.</span></p></div>
+            <div class="ver"><b class="mono caption-3">v5</b><p class="body-6"><b>Respond, Report, Document.</b> <span class="muted">A friend working in Japan said care workers need emotional and reporting skills, not more vocabulary. The product was rebuilt around that.</span></p></div>
+            <div class="ver"><b class="mono caption-3">v7</b><p class="body-6"><b>Final.</b> <span class="muted">Colour used to give the eye a path: number, route, product, position, pilot.</span></p></div>
+          </div>
+          <div class="downloads" style="margin-top:var(--sp-300)">
+            <a class="btn button-sm" href="media/kizuna-poster.jpg" target="_blank" rel="noopener"><i class="ph ph-image" aria-hidden="true"></i>Full resolution poster</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODEL -->
+  <section id="model">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="reveal">
+          <div class="kicker caption-3 eyebrow">Business model <span class="tag prop" style="margin-left:var(--sp-75)">Proposed</span></div>
+          <h2 class="heading-3">Centres pay. <span class="serif">Trainees use it free.</span></h2>
+        </div>
+        <p class="body-3 muted reveal" style="--d:120ms">One buyer, two users. The price is deliberately not fixed: the pilot sets it.</p>
+      </div>
+      <div class="biz">
+        <div class="card spot reveal"><span class="caption-3 eyebrow">Main revenue</span><h3 class="heading-6" style="margin:var(--sp-75) 0">Centres pay</h3><p class="body-6 muted">A per learner licence for the platform and trainer dashboard, so they can decide who is ready for placement, with evidence.</p></div>
+        <div class="card spot reveal" style="--d:100ms"><span class="caption-3 eyebrow">Second payer</span><h3 class="heading-6" style="margin:var(--sp-75) 0">Employers fund seats</h3><p class="body-6 muted">Overseas employers already invest heavily in each foreign carer. Sponsored seats show them each hire’s readiness score.</p></div>
+        <div class="card spot reveal" style="--d:200ms"><span class="caption-3 eyebrow">Access</span><h3 class="heading-6" style="margin:var(--sp-75) 0">Trainees free</h3><p class="body-6 muted">No cost to the carer, so the whole batch practises, not just those who can pay.</p></div>
+      </div>
+      <div class="card pilot reveal">
+        <div>
+          <span class="caption-3 eyebrow">First pilot · concierge MVP · proposed</span>
+          <h3 class="heading-5" style="margin:var(--sp-100) 0 var(--sp-200)">One training centre, one batch, all three modes.</h3>
+          <p class="body-6 muted">Results reviewed with the trainers by hand, and a readiness report handed to the centre for each candidate. First centres to approach: TOMCOM (Telangana) and ODEPC (Kerala), both already preparing carers for Japan.</p>
+        </div>
+        <div>
+          <span class="caption-3 eyebrow">The pilot answers three questions</span>
+          <ol class="body-3" style="margin-top:var(--sp-200)">
+            <li>Do trainees improve with practice?</li>
+            <li>Do trainers trust the readiness score?</li>
+            <li>Will the centre pay to continue?</li>
+          </ol>
+          <div class="road caption-4">
+            <div><b>Pilot</b><br><span class="muted">One centre, one batch</span></div>
+            <div><b>Japan</b><br><span class="muted">South India centres</span></div>
+            <div><b>Scale</b><br><span class="muted">Other sending countries</span></div>
+            <div><b>Global</b><br><span class="muted">Germany and beyond</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DECISIONS -->
+  <section id="decisions">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="reveal">
+          <div class="kicker caption-3 eyebrow">Product judgement</div>
+          <h2 class="heading-3">What I chose <span class="serif">not to claim.</span></h2>
+        </div>
+        <p class="body-3 muted reveal" style="--d:120ms">Every position is stated as context, a design choice or a proposal, never as a measured result. A judge who catches one shaky number distrusts the rest.</p>
+      </div>
+      <div class="decisions">
+        <div class="card dec spot reveal"><span class="ico"><i class="ph ph-scales" aria-hidden="true"></i></span><div><h3 class="title-2">“135,000” is a ceiling, not jobs</h3><p class="body-6 muted">It is the planned maximum intake for all nationalities over five years. Never “135,000 vacancies”, never “for Indians”.</p></div></div>
+        <div class="card dec spot reveal" style="--d:100ms"><span class="ico"><i class="ph ph-eye-slash" aria-hidden="true"></i></span><div><h3 class="title-2">No quit prediction dashboard</h3><p class="body-6 muted">Considered and left out: no evidence behind it, consent and fairness problems, and it would break the promise that practice is safe.</p></div></div>
+        <div class="card dec spot reveal"><span class="ico"><i class="ph ph-currency-inr" aria-hidden="true"></i></span><div><h3 class="title-2">No price, no market size in rupees</h3><p class="body-6 muted">Early drafts had per learner prices and a revenue figure. They came out: the pilot is how we learn what a centre will actually pay.</p></div></div>
+        <div class="card dec spot reveal" style="--d:100ms"><span class="ico"><i class="ph ph-handshake" aria-hidden="true"></i></span><div><h3 class="title-2">Alternatives, not rivals</h3><p class="body-6 muted">Claims about what named companies lack couldn’t be verified, so the comparison is against classes, generic AI tools and specialist centres. Kizuna complements teachers; it doesn’t replace them.</p></div></div>
+      </div>
+
+      <details class="sources reveal">
+        <summary>Sources</summary>
+        <ul class="caption-2">
+          <li>Cabinet Office of Japan, Annual Report on the Ageing Society 2026</li>
+          <li>Immigration Services Agency of Japan, SSW nursing care field; Cabinet decision of 29 March 2024</li>
+          <li>Immigration Services Agency, SSW (i) by nationality and field, 31 Dec 2025 (preliminary)</li>
+          <li>Kyodo News, Indian caregivers in Japan, 14 Dec 2025</li>
+          <li>Japan Foundation, Survey on Japanese Language Education Abroad 2024</li>
+          <li>MHLW, Nursing Care Japanese Language Evaluation Test implementation guideline</li>
+          <li>ERIA, Japan’s channels for migrant care workers, 2022</li>
+          <li>MOFA, Action Plan for Japan–India Human Resource Exchange and Cooperation, 2025</li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="endcap reveal">
+      <div>
+        <h2 class="heading-4">Want the <span class="serif">live demo?</span></h2>
+        <p class="body-3">The full deck has the appendix tables and every source. I’m happy to walk through the prototype with AI feedback switched on.</p>
+      </div>
+      <div class="row">
+        <a class="btn primary button-md lg" href="mailto:ic23btech11019@iith.ac.in?subject=Kizuna"><i class="ph ph-envelope-simple" aria-hidden="true"></i>Email me</a>
+        <a class="btn button-md lg" href="../../#work"><i class="ph ph-arrow-left" aria-hidden="true"></i>More work</a>
+      </div>
+    </div>
+    <footer class="caption-2"><span>© 2026 Sarvesh Goyal</span><span>Kizuna · 2nd place across IITs, EMC Business Contest 2026</span></footer>
+  </div>
+</main>
+
+<script>
+(function () {
+  var root = document.documentElement, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, fine = matchMedia('(pointer: fine)').matches;
+  function $(s, c) { return (c || document).querySelector(s); }
+  function $$(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
+
+  // Theme
+  var tb = $('.theme-toggle');
+  function isDark() { return (root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark'; }
+  function icon() { tb.querySelector('i').className = 'ph ' + (isDark() ? 'ph-sun' : 'ph-moon'); }
+  icon();
+  tb.addEventListener('click', function () { var n = isDark() ? 'light' : 'dark'; root.setAttribute('data-theme', n); try { localStorage.setItem('sg-theme', n); } catch (e) {} icon(); });
+
+  // Count up
+  function countUp(el) {
+    var raw = el.getAttribute('data-count'); if (!raw) return;
+    var to = parseFloat(raw), dec = (raw.split('.')[1] || '').length, suf = el.getAttribute('data-suf') || '';
+    function fmt(v) { return (dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-US')) + suf; }
+    if (reduce) { el.textContent = fmt(to); return; }
+    var t0 = null; function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / 1500), e = 1 - Math.pow(1 - p, 4); el.textContent = fmt(to * e); if (p < 1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+
+  // Deck carousel
+  var N = 15, cur = 0, stage = $('#deckStage'), thumbs = $('#thumbs'), count = $('#deckCount'), imgs = [];
+  for (var i = 1; i <= N; i++) {
+    var src = 'media/slides/slide-' + (i < 10 ? '0' + i : i) + '.jpg';
+    var im = document.createElement('img'); im.alt = 'Slide ' + i + ' of ' + N; im.width = 1280; im.height = 720; if (i > 2) im.loading = 'lazy'; im.src = src;
+    stage.appendChild(im); imgs.push(im);
+    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Go to slide ' + i);
+    b.innerHTML = '<img src="' + src + '" alt="" loading="lazy" width="112" height="63">';
+    (function (k) { b.addEventListener('click', function () { go(k); }); })(i - 1);
+    thumbs.appendChild(b);
+  }
+  var tbtns = $$('button', thumbs);
+  function go(k) {
+    cur = (k + N) % N;
+    imgs.forEach(function (im, j) { im.classList.toggle('on', j === cur); });
+    tbtns.forEach(function (b, j) { b.setAttribute('aria-current', j === cur ? 'true' : 'false'); });
+    count.textContent = (cur < 9 ? '0' : '') + (cur + 1) + ' / ' + N;
+    var tb = tbtns[cur]; if (tb) thumbs.scrollTo({ left: tb.offsetLeft - thumbs.clientWidth / 2 + tb.clientWidth / 2, behavior: reduce ? 'auto' : 'smooth' });
+  }
+  go(0);
+  $('.deck-nav.prev').addEventListener('click', function () { go(cur - 1); });
+  $('.deck-nav.next').addEventListener('click', function () { go(cur + 1); });
+  stage.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { go(cur + 1); e.preventDefault(); } if (e.key === 'ArrowLeft') { go(cur - 1); e.preventDefault(); } });
+  var sx = null;
+  stage.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1)); sx = null; });
+
+  // Poster zoom: swap to the full file on first hover, follow the cursor
+  var zoom = $('#zoom');
+  if (zoom && fine && !reduce) {
+    var zi = zoom.querySelector('img'), loaded = false;
+    zoom.addEventListener('pointerenter', function () { if (!loaded) { loaded = true; zi.src = zi.getAttribute('data-full'); } });
+    zoom.addEventListener('pointermove', function (e) { var r = zoom.getBoundingClientRect(); zoom.style.setProperty('--zx', ((e.clientX - r.left) / r.width * 100) + '%'); zoom.style.setProperty('--zy', ((e.clientY - r.top) / r.height * 100) + '%'); });
+  }
+
+  // Pointer effects
+  if (fine && !reduce) {
+    $$('.spot').forEach(function (c) { c.addEventListener('pointermove', function (e) { var r = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px'); }); });
+    var tilt = $('#tilt');
+    if (tilt) {
+      tilt.addEventListener('pointermove', function (e) { var r = tilt.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5; tilt.style.transform = 'rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg)'; });
+      tilt.addEventListener('pointerleave', function () { tilt.style.transform = ''; });
+    }
+  }
+
+  // Progress bar
+  var bar = $('.progress'), tk = false;
+  function onScroll() { tk = false; var m = document.documentElement.scrollHeight - innerHeight; bar.style.transform = 'scaleX(' + (m > 0 ? scrollY / m : 0) + ')'; }
+  addEventListener('scroll', function () { if (!tk) { tk = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  // Reveals, counters, nav spy
+  if (!('IntersectionObserver' in window)) { $$('.reveal').forEach(function (e) { e.classList.add('in'); }); $$('[data-count]').forEach(countUp); return; }
+  var rev = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); rev.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+  $$('.reveal').forEach(function (e) { rev.observe(e); });
+  var cio = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } }); });
+  $$('[data-count]').forEach(function (e) { cio.observe(e); });
+  var links = $$('.nav-links a');
+  var spy = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'true' : 'false'); }); }); }, { rootMargin: '-40% 0px -55% 0px' });
+  ['problem', 'product', 'prototype', 'deck', 'model'].forEach(function (id) { var s = document.getElementById(id); if (s) spy.observe(s); });
+})();
+</script>
+</body>
+</html>

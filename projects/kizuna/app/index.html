@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#EFECE4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='12' fill='%23F5F4EF' stroke='%231E388F' stroke-width='5'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%231E388F' font-family='sans-serif' font-weight='700'%3E%E7%B5%86%3C/text%3E%3C/svg%3E">
+<title>Kizuna</title>
+<meta name="description" content="Kizuna: workplace Japanese practice and workplace-readiness for care-worker training centres.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+/* Layout: app shell — top bar with role switch (Trainee / Trainer / Centre), one content column per role; poster identity: cream paper, navy ink, one warm accent */
+:root{
+  --bg:#EFECE4; --surface:#F9F7F2; --raised:#FFFFFF; --ink:#1E388F; --text:#1F2A5C; --muted:#56609A; --line:#CBD0E6; --tint:#E1E5F3; --deep:#142A78; --on-deep:#F5F4EF; --on-deep-muted:#C7CEEE;
+  --ok:#1D7A51; --ok-bg:#DDF0E5; --warn:#97600C; --warn-bg:#F6E8CC; --bad:#A93A32; --bad-bg:#F6DEDB; --warm:#B5520F; --warm-bg:#F6E2D1;
+  --shadow:0 1px 2px rgba(20,42,120,.06),0 8px 24px -12px rgba(20,42,120,.18);
+  --f-display:"Space Grotesk",system-ui,sans-serif; --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; --f-ja:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --r:14px; --ease:cubic-bezier(.2,.8,.2,1);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1230; --surface:#161C3F; --raised:#1C2350; --ink:#A9B8FF; --text:#E1E5F7; --muted:#A4ACD6; --line:#2F3870; --tint:#242C5E; --deep:#22348F; --on-deep:#F5F4EF; --on-deep-muted:#CDD3F2;
+  --ok:#6FD3A0; --ok-bg:#15372A; --warn:#F1BE6B; --warn-bg:#3B2C12; --bad:#F2928A; --bad-bg:#3E1C1E; --warm:#F3A770; --warm-bg:#3B2615; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px -14px rgba(0,0,0,.6); color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1230; --surface:#161C3F; --raised:#1C2350; --ink:#A9B8FF; --text:#E1E5F7; --muted:#A4ACD6; --line:#2F3870; --tint:#242C5E; --deep:#22348F; --on-deep:#F5F4EF; --on-deep-muted:#CDD3F2;
+  --ok:#6FD3A0; --ok-bg:#15372A; --warn:#F1BE6B; --warn-bg:#3B2C12; --bad:#F2928A; --bad-bg:#3E1C1E; --warm:#F3A770; --warm-bg:#3B2615; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px -14px rgba(0,0,0,.6); color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.55}
+.ja,[lang="ja"]{font-family:var(--f-ja)}
+h1,h2,h3{font-family:var(--f-display);color:var(--ink);margin:0;line-height:1.15;text-wrap:balance}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--warm);outline-offset:2px;border-radius:6px}
+.label{font-family:var(--f-mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* top bar */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.kbox{width:40px;height:40px;border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--f-ja);font-weight:700;font-size:22px;color:var(--ink);border-radius:8px}
+.brand b{font-family:var(--f-display);font-size:22px;color:var(--ink)}
+.roles{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);padding:4px;border-radius:12px;margin-left:auto}
+.role{min-height:44px;padding:0 14px;border:0;background:transparent;border-radius:9px;display:flex;align-items:center;gap:8px;font-weight:600;color:var(--muted);transition:background .2s var(--ease),color .2s var(--ease)}
+.role[aria-current="page"]{background:var(--deep);color:var(--on-deep)}
+.role:not([aria-current="page"]):hover{background:var(--tint);color:var(--ink)}
+.ai-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)} .dot.on{background:var(--ok)} .dot.off{background:var(--warn)}
+@media (max-width:720px){.roles{margin-left:0;width:100%} .role{flex:1;justify-content:center;padding:0 8px} .ai-chip{display:none}}
+@media (max-width:480px){.role svg{display:none} .role{padding:0 4px;font-size:15px}}
+
+main{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 64px}
+.view-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.view-head h1{font-size:clamp(26px,3.4vw,36px)}
+.view-head p{color:var(--muted);margin-top:4px}
+.sample{font-size:13px;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:8px;padding:6px 10px}
+
+.card{background:var(--raised);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;min-width:0}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))} .g4{grid-template-columns:repeat(4,minmax(0,1fr))} .g2{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+@media (max-width:980px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))} .g3{grid-template-columns:minmax(0,1fr)} .g2{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:480px){.g4{grid-template-columns:minmax(0,1fr)}}
+.enter{animation:up .45s var(--ease) both;animation-delay:calc(var(--i,0) * 60ms)}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.btn{min-height:44px;padding:0 18px;border-radius:10px;border:0;background:var(--deep);color:var(--on-deep);font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:transform .12s var(--ease),filter .2s}
+.btn:hover{filter:brightness(1.1)} .btn:active{transform:scale(.97)} .btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)} .btn.ghost:hover{background:var(--tint)}
+.btn.sm{min-height:40px;padding:0 12px;font-size:14px}
+.chip{min-height:36px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:14px;transition:background .2s,border-color .2s}
+.chip:hover{border-color:var(--ink);background:var(--tint)}
+.band{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;padding:4px 9px;border-radius:999px;white-space:nowrap;font-weight:500}
+.b-ready{background:var(--ok-bg);color:var(--ok)} .b-almost{background:var(--warn-bg);color:var(--warn)} .b-not{background:var(--bad-bg);color:var(--bad)}
+
+/* ring */
+.ring{position:relative;display:grid;place-items:center}
+.ring svg{transform:rotate(-90deg)}
+.ring .trk{stroke:var(--tint)} .ring .val{stroke:var(--ink);transition:stroke-dashoffset 1s var(--ease)}
+.ring .val.ok{stroke:var(--ok)} .ring .val.warn{stroke:var(--warn)} .ring .val.bad{stroke:var(--bad)}
+.ring .num{position:absolute;text-align:center;font-family:var(--f-display);font-weight:700;color:var(--ink);line-height:1}
+.ring .num small{display:block;font-family:var(--f-body);font-weight:500;font-size:12px;color:var(--muted);margin-top:4px}
+
+/* trainee home */
+.hero{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;background:linear-gradient(120deg,var(--deep),#1E388F 60%,#3D55B4);color:var(--on-deep);border:0}
+.hero h2{color:var(--on-deep);font-size:clamp(22px,2.6vw,28px)}
+.hero p{color:var(--on-deep-muted)}
+.hero .ring .num{color:var(--on-deep)} .hero .ring .num small{color:var(--on-deep-muted)} .hero .ring .trk{stroke:rgba(255,255,255,.18)} .hero .ring .val{stroke:#F5F4EF}
+.focus-tip{margin-top:12px;display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.12);padding:8px 12px;border-radius:10px;font-size:14px}
+@media (max-width:600px){.hero{grid-template-columns:minmax(0,1fr);justify-items:start}}
+.moment{display:flex;flex-direction:column;gap:12px;text-align:left;border:1px solid var(--line);transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s}
+.moment:hover{transform:translateY(-3px);border-color:var(--ink)}
+.moment .ic{width:44px;height:44px;border-radius:12px;background:var(--tint);color:var(--ink);display:grid;place-items:center}
+.moment h3{font-size:22px}
+.moment .sit{color:var(--muted);font-size:15px}
+.meter{height:8px;border-radius:99px;background:var(--tint);overflow:hidden}
+.meter i{display:block;height:100%;border-radius:99px;background:var(--ink);width:0;transition:width .9s var(--ease)}
+.mfoot{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted)}
+.assigned{font-size:12px;font-weight:600;color:var(--warm);background:var(--warm-bg);padding:3px 8px;border-radius:99px}
+
+/* practice */
+.crumb{display:inline-flex;align-items:center;gap:6px;min-height:44px;background:none;border:0;color:var(--ink);font-weight:600;padding:0}
+.scen{background:linear-gradient(120deg,var(--deep),#1E388F 70%,#3149A8);color:var(--on-deep);border:0}
+.scen h2{color:var(--on-deep);font-size:22px;margin:6px 0 12px}
+.scen .label{color:var(--on-deep-muted)}
+.facts{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 14px;font-size:15px;margin:0}
+.facts dt{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--on-deep-muted);padding-top:3px}
+.facts dd{margin:0}
+.note-line{margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.25);font-size:14.5px}
+textarea{width:100%;min-height:140px;resize:vertical;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text);font-family:var(--f-ja);font-size:17px;line-height:1.75;padding:12px 14px}
+textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px color-mix(in srgb,var(--ink) 25%,transparent)}
+.field-label{display:block;font-weight:600;color:var(--ink);margin-bottom:6px}
+.hint{font-size:14px;color:var(--muted);margin-top:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.spread{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.checks{list-style:none;margin:0;padding:0}
+.checks li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;padding:11px 0;border-top:1px solid var(--line)}
+.checks li:first-child{border-top:0}
+.mk{width:26px;height:26px;border-radius:50%;display:grid;place-items:center}
+.mk svg{width:16px;height:16px;stroke-width:3}
+.mk.ok{background:var(--ok-bg);color:var(--ok)} .mk.no{background:var(--bad-bg);color:var(--bad)} .mk.warn{background:var(--warn-bg);color:var(--warn)}
+.checks b{font-weight:600}
+.checks p{font-size:14px;color:var(--muted)}
+.checks li.pop{animation:pop .5s var(--ease)}
+@keyframes pop{0%{background:var(--tint)}100%{background:transparent}}
+.fb-top{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+.ai-box{margin-top:16px;padding-top:14px;border-top:2px solid var(--ink)}
+.ai-body{display:flex;flex-direction:column;gap:10px;margin-top:8px;font-size:15px}
+.model{background:var(--tint);border-radius:10px;padding:12px 14px}
+.model .j{white-space:pre-line;font-family:var(--f-ja);font-size:16.5px;line-height:1.7;color:var(--text)}
+.model .e{font-size:13.5px;color:var(--muted);margin-top:4px}
+.thinking{display:flex;gap:10px;align-items:center;color:var(--muted)}
+.spin{width:16px;height:16px;border:2.5px solid var(--line);border-top-color:var(--ink);border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.history{display:flex;align-items:center;gap:12px;margin-top:14px;font-size:13px;color:var(--muted)}
+.flag{color:inherit;background:var(--warn-bg);border-bottom:2px solid var(--warn);border-radius:3px;padding:0 2px}
+.preview{font-family:var(--f-ja);font-size:16px;line-height:1.8;background:var(--surface);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;margin-top:10px;white-space:pre-wrap}
+.chat{display:flex;flex-direction:column;gap:10px;max-height:420px;overflow-y:auto;padding:4px 4px 4px 0;scroll-behavior:smooth}
+.msg{max-width:86%;padding:10px 14px;border-radius:14px;animation:up .35s var(--ease) both}
+.msg .who{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.msg .j{font-family:var(--f-ja);font-size:17px;line-height:1.6}
+.msg .e{font-size:13px;opacity:.8}
+.msg.res{align-self:flex-start;background:var(--deep);color:var(--on-deep);border-bottom-left-radius:4px}
+.msg.tr{align-self:flex-end;background:var(--tint);color:var(--text);border-bottom-right-radius:4px}
+.typing{display:inline-flex;gap:4px;padding:4px 0}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--on-deep-muted);animation:bl 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bl{0%,80%,100%{opacity:.3}40%{opacity:1}}
+.composer{display:flex;gap:8px;margin-top:12px;align-items:flex-end}
+.composer textarea{min-height:52px}
+
+/* trainer / centre */
+.kpi .n{font-family:var(--f-display);font-weight:700;font-size:34px;color:var(--ink);line-height:1.1;font-variant-numeric:tabular-nums;margin-top:6px}
+.kpi p{font-size:14px;color:var(--muted);margin-top:4px}
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:720px}
+th{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:left;font-weight:500;padding:10px 8px;border-bottom:2px solid var(--ink);white-space:nowrap}
+td{padding:8px;border-bottom:1px solid var(--line);vertical-align:middle;font-variant-numeric:tabular-nums}
+tr.clickable{cursor:pointer;transition:background .15s} tr.clickable:hover{background:var(--tint)}
+.cell{display:inline-grid;place-items:center;min-width:52px;height:34px;border-radius:8px;font-weight:600;font-size:14px}
+.c-ok{background:var(--ok-bg);color:var(--ok)} .c-warn{background:var(--warn-bg);color:var(--warn)} .c-bad{background:var(--bad-bg);color:var(--bad)}
+.you{font-size:11px;font-weight:700;color:var(--warm);background:var(--warm-bg);padding:2px 6px;border-radius:99px;margin-left:6px}
+.bars{display:flex;flex-direction:column;gap:12px;margin-top:10px}
+.bar{display:grid;grid-template-columns:170px minmax(0,1fr) 48px;gap:10px;align-items:center;font-size:14px}
+.bar .t{height:12px;border-radius:99px;background:var(--tint);overflow:hidden}
+.bar .t i{display:block;height:100%;border-radius:99px;background:var(--ink);width:0;transition:width 1s var(--ease)}
+.bar .v{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+@media (max-width:480px){.bar{grid-template-columns:110px minmax(0,1fr) 40px}}
+.stack{display:flex;height:18px;border-radius:99px;overflow:hidden;margin:14px 0 8px}
+.stack i{display:block;height:100%;transition:width 1s var(--ease)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.sw{width:10px;height:10px;border-radius:3px;display:inline-block}
+.bandcard .n{font-family:var(--f-display);font-weight:700;font-size:44px;line-height:1}
+.bandcard .who{font-size:14px;color:var(--muted);margin-top:8px}
+.bandcard.ready{border-top:5px solid var(--ok)} .bandcard.almost{border-top:5px solid var(--warn)} .bandcard.not{border-top:5px solid var(--bad)}
+.bandcard.ready .n{color:var(--ok)} .bandcard.almost .n{color:var(--warn)} .bandcard.not .n{color:var(--bad)}
+
+/* learn */
+.lesson{padding:0;overflow:hidden;display:flex;flex-direction:column;text-align:left;border:1px solid var(--line);transition:transform .2s var(--ease),border-color .2s}
+.lesson:hover{transform:translateY(-3px);border-color:var(--ink)}
+.thumb{position:relative;aspect-ratio:16/9;display:grid;place-items:center;overflow:hidden}
+.thumb.t1{background:linear-gradient(135deg,#1E388F,#3D55B4)} .thumb.t2{background:linear-gradient(135deg,#142A78,#B5520F)} .thumb.t3{background:linear-gradient(135deg,#1D5A4A,#1E388F)}
+.thumb svg.art{position:absolute;inset:0;width:100%;height:100%}
+.play{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.94);display:grid;place-items:center;color:#142A78;box-shadow:0 8px 24px rgba(0,0,0,.25);position:relative;transition:transform .2s var(--ease)}
+.lesson:hover .play{transform:scale(1.08)}
+.play svg{width:26px;height:26px;fill:currentColor;stroke:none;margin-left:4px}
+.dur{position:absolute;right:10px;bottom:10px;background:rgba(10,16,48,.78);color:#fff;font-family:var(--f-mono);font-size:12px;padding:3px 8px;border-radius:6px}
+.soon{position:absolute;left:10px;top:10px;background:#F6E2D1;color:#8A3D08;font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px}
+.lesson .lb{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.lesson h3{font-size:20px}
+.lesson .lb p{color:var(--muted);font-size:15px}
+.player{background:#0E1230;border-radius:12px;overflow:hidden;margin-top:14px}
+.player .screen{aspect-ratio:16/9;position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:22px}
+.skel{background:linear-gradient(90deg,rgba(255,255,255,.06),rgba(255,255,255,.16),rgba(255,255,255,.06));background-size:200% 100%;animation:shim 1.4s linear infinite;border-radius:8px;height:14px}
+@keyframes shim{to{background-position:-200% 0}}
+.player .pmsg{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);background:rgba(255,255,255,.95);color:#142A78;border-radius:12px;padding:14px 18px;text-align:center;width:min(360px,85%);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.player .pmsg b{display:block;font-family:var(--f-display);font-size:17px}
+.player .pmsg span{font-size:13.5px;color:#3E4775}
+.controls{display:flex;align-items:center;gap:12px;padding:12px 16px;color:#C7CEEE;font-family:var(--f-mono);font-size:12px;border-top:1px solid rgba(255,255,255,.1)}
+.controls svg{width:18px;height:18px;fill:#C7CEEE;stroke:none;opacity:.5}
+.controls .trk{flex:1;height:5px;border-radius:99px;background:rgba(255,255,255,.15)}
+.sheet{display:flex;flex-direction:column;gap:14px;margin-top:16px}
+.sheet .st{display:grid;grid-template-columns:32px minmax(0,1fr);gap:12px;align-items:start}
+.sheet .num{width:32px;height:32px;border-radius:50%;background:var(--deep);color:var(--on-deep);display:grid;place-items:center;font-weight:700;font-family:var(--f-display)}
+.sheet .why{font-size:14px;color:var(--muted)}
+.sheet .jp{font-family:var(--f-ja);font-size:17px;line-height:1.6;color:var(--text);background:var(--tint);border-radius:8px;padding:6px 10px;margin-top:4px}
+.dodont{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+@media (max-width:560px){.dodont{grid-template-columns:1fr}}
+.do,.dont{border-radius:10px;padding:10px 12px;font-size:14.5px;display:flex;gap:8px;align-items:flex-start}
+.do{background:var(--ok-bg);color:var(--ok)} .dont{background:var(--bad-bg);color:var(--bad)}
+.do svg,.dont svg{width:18px;height:18px;flex:none;margin-top:2px}
+.res{display:flex;gap:14px;align-items:flex-start;text-align:left;border:1px solid var(--line);transition:border-color .2s,transform .2s var(--ease)}
+.res:hover{border-color:var(--ink);transform:translateY(-2px)}
+.res .ic{width:44px;height:44px;border-radius:12px;background:var(--tint);color:var(--ink);display:grid;place-items:center;flex:none}
+.res h3{font-size:19px} .res p{font-size:14.5px;color:var(--muted);margin-top:3px}
+.sec-h{font-size:20px;margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+
+/* drawer + modal */
+.scrim{position:fixed;inset:0;background:rgba(10,16,48,.45);z-index:40;animation:fade .2s both}
+@keyframes fade{from{opacity:0}}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--raised);z-index:41;box-shadow:-20px 0 40px -20px rgba(0,0,0,.4);padding:calc(20px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) 20px;overflow-y:auto;animation:slide .3s var(--ease) both}
+@keyframes slide{from{transform:translateX(30px);opacity:0}}
+.modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(640px,calc(100% - 32px));max-height:calc(100% - 48px);overflow-y:auto;background:var(--raised);z-index:41;border-radius:16px;padding:28px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);animation:fade .25s both}
+.x{min-width:44px;min-height:44px;border:0;background:var(--tint);border-radius:10px;display:grid;place-items:center;color:var(--ink)}
+.report-card{border:2px solid var(--ink);border-radius:12px;padding:18px;margin-top:14px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--deep);color:var(--on-deep);padding:12px 18px;border-radius:12px;z-index:60;display:flex;gap:10px;align-items:center;box-shadow:var(--shadow);animation:toast 3.2s var(--ease) both;max-width:calc(100% - 32px)}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,12px)}10%,85%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,8px)}}
+.foot{margin-top:40px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#trainee" aria-label="Kizuna home"><span class="kbox" aria-hidden="true">絆</span><b>Kizuna</b></a>
+    <span class="ai-chip" id="aiChip" aria-live="polite"><span class="dot" id="aiDot"></span><span id="aiText">AI feedback</span></span>
+    <nav class="roles" aria-label="Switch role">
+      <button class="role" data-role="trainee" id="r-trainee"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Trainee</button>
+      <button class="role" data-role="trainer" id="r-trainer"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-3.5 3-5.5 7-5.5s7 2 7 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c2.4.6 4 2.3 4 5.2"/></svg>Trainer</button>
+      <button class="role" data-role="centre" id="r-centre"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5M9 10h.01M15 10h.01"/></svg>Centre</button>
+      <button class="role" data-role="learn" id="r-learn"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14Z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>Learn</button>
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1"></main>
+<div id="layer"></div>
+
+<script>
+(function(){
+"use strict";
+/* ---------- helpers ---------- */
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const ICON = {
+  chat:'<path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12Z"/>',
+  alert:'<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17h.01"/>',
+  file:'<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Z"/><path d="M14 3v6h6M8 13h8M8 17h5"/>',
+  check:'<path d="m5 12 5 5L20 7"/>', x:'<path d="M6 6l12 12M18 6 6 18"/>', bang:'<path d="M12 6v7M12 17h.01"/>',
+  back:'<path d="M15 18l-6-6 6-6"/>', target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+  spark:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/>',
+  send:'<path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/>', refresh:'<path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/>',
+  doc:'<path d="M9 12h6M9 16h6M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Z"/>', plus:'<path d="M12 5v14M5 12h14"/>'
+};
+const ic = (n, cls="i") => `<svg class="${cls}" aria-hidden="true" viewBox="0 0 24 24">${ICON[n]}</svg>`;
+function toast(msg){ const t=document.createElement("div"); t.className="toast"; t.setAttribute("role","status"); t.innerHTML=ic("check")+"<span>"+esc(msg)+"</span>"; document.body.append(t); setTimeout(()=>t.remove(),3300); }
+function countUp(el, to, suffix=""){ if(reduce){ el.textContent=to+suffix; return; } const t0=performance.now(), d=900; const f=t=>{ const k=Math.min(1,(t-t0)/d), e=1-Math.pow(1-k,3); el.textContent=Math.round(to*e)+suffix; if(k<1) requestAnimationFrame(f); }; requestAnimationFrame(f); }
+function ring(score, size=120, stroke=10, label="", cls=""){ const r=(size-stroke)/2, c=2*Math.PI*r; const tone = cls || (score>=80?"ok":score>=60?"warn":"bad");
+  return `<div class="ring" style="width:${size}px;height:${size}px" role="img" aria-label="${esc(label)} ${score} out of 100"><svg width="${size}" height="${size}"><circle class="trk" cx="${size/2}" cy="${size/2}" r="${r}" stroke-width="${stroke}" fill="none"/><circle class="val ${tone}" cx="${size/2}" cy="${size/2}" r="${r}" stroke-width="${stroke}" fill="none" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c}" data-off="${c*(1-score/100)}"/></svg><div class="num" style="font-size:${Math.round(size*0.27)}px"><span data-count="${score}">0</span>${label?`<small>${esc(label)}</small>`:""}</div></div>`; }
+function animateIn(root=document){ requestAnimationFrame(()=>{ root.querySelectorAll(".ring .val[data-off]").forEach(c=>c.style.strokeDashoffset=c.dataset.off); root.querySelectorAll("[data-count]").forEach(n=>countUp(n, +n.dataset.count)); root.querySelectorAll("[data-w]").forEach(i=>i.style.width=i.dataset.w+"%"); }); }
+function spark(vals, w=140, h=36){ if(vals.length<2) return ""; const lo=Math.max(0,Math.min(...vals)-8), hi=Math.min(100,Math.max(...vals)+8), rg=Math.max(1,hi-lo), step=(w-8)/(vals.length-1); const pts=vals.map((v,i)=>`${(4+i*step).toFixed(1)},${(h-4-((v-lo)/rg)*(h-8)).toFixed(1)}`).join(" "); const last=pts.split(" ").pop().split(",");
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="Scores over attempts: ${vals.join(", ")}"><polyline points="${pts}" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${last[0]}" cy="${last[1]}" r="4" fill="currentColor"/></svg>`; }
+
+/* ---------- data ---------- */
+const MEASURES = [
+  {k:"respect", name:"Respect & register", from:"Respond"},
+  {k:"report", name:"Report completeness", from:"Report"},
+  {k:"observed", name:"Observed, not assumed", from:"Report"},
+  {k:"factual", name:"Factual records", from:"Document"},
+  {k:"consistency", name:"Consistency", from:"All moments"}
+];
+const COHORT = [
+  {id:"priya", name:"Priya S.", live:true, base:{respect:72,report:64,observed:58,factual:70,consistency:52}, last:"Today"},
+  {id:"arjun", name:"Arjun M.", base:{respect:68,report:55,observed:62,factual:74,consistency:58}, last:"Today"},
+  {id:"fathima", name:"Fathima K.", base:{respect:88,report:86,observed:90,factual:62,consistency:80}, last:"Yesterday"},
+  {id:"rahul", name:"Rahul D.", base:{respect:60,report:50,observed:45,factual:58,consistency:50}, last:"Today"},
+  {id:"anjali", name:"Anjali N.", base:{respect:92,report:90,observed:94,factual:88,consistency:86}, last:"2 days ago"},
+  {id:"vikram", name:"Vikram P.", base:{respect:84,report:82,observed:80,factual:66,consistency:76}, last:"Yesterday"},
+  {id:"sneha", name:"Sneha R.", base:{respect:90,report:88,observed:86,factual:84,consistency:82}, last:"Today"},
+  {id:"joseph", name:"Joseph T.", base:{respect:55,report:42,observed:40,factual:52,consistency:38}, last:"3 days ago"}
+];
+const TREND = [41,47,52,58,63];
+const MOMENTS = {
+  respond:{ key:"respond", letter:"A", name:"Respond", icon:"chat", sit:"When a resident refuses care, is confused or distressed", scen:"It’s 10:15. Tanaka-san doesn’t want her bath today. Respond with care." },
+  report:{ key:"report", letter:"B", name:"Report", icon:"alert", sit:"When something goes wrong: a four-part report to the shift leader", scen:"A resident is found on the floor of her room. Report to the shift leader." },
+  document:{ key:"document", letter:"C", name:"Document", icon:"file", sit:"At the end of a shift: a factual care record", scen:"Write this morning’s care record for Tanaka-san." }
+};
+const REP = { strong:"10時15分ごろ、居室の床に倒れている田中さんを発見しました。意識ははっきりしていて、右の腰の痛みを訴えています。動かさずに、その場で様子を見ています。看護師さんに確認をお願いできますか。", weak:"田中さんが転んでしまいました。痛いみたいです。どうしたらいいですか。" };
+const DOC = { strong:"10:15 入浴を勧めたところ、「今日は入りたくない。寒いし、疲れている」と話される。\n10:30 足湯を提案し、同意を得て足湯を実施。「あたたかい」と話され、表情は穏やか。\n昼食後に再度入浴の声かけを行う予定。", weak:"田中さんはわがままで、今日も入浴を拒否した。機嫌が悪かったので足湯にした。" };
+const OPEN = {ja:"今日はお風呂、入りたくないなあ…", en:"I don’t feel like a bath today…"};
+const SAYS = [["そうなんですね。では、足湯から始めてみませんか？","Acknowledge + offer"],["今と、お昼のあと、どちらがいいですか？","Offer a choice"],["だめですよ。今日はお風呂の日です。入ってください。","Too direct (try it)"]];
+
+/* ---------- state (per-viewer convenience) ---------- */
+const KEY="kizuna-proto-v1";
+let S = { role:"trainee", view:"home", attempts:{respond:[],report:[],document:[]}, assigned:{}, chat:null, reportText:REP.strong, docText:DOC.weak };
+try { const s=JSON.parse(localStorage.getItem(KEY)||"null"); if(s&&s.attempts) { S.attempts=s.attempts; S.assigned=s.assigned||{}; } } catch(e){}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify({attempts:S.attempts, assigned:S.assigned})); } catch(e){} };
+const avg = a => a.length ? Math.round(a.reduce((x,y)=>x+y,0)/a.length) : 0;
+const last3 = (arr, f) => arr.slice(-3).map(f);
+function liveMeasures(base){
+  const A=S.attempts, m={...base}, n=A.respond.length+A.report.length+A.document.length;
+  if(A.respond.length) m.respect=avg(last3(A.respond,a=>a.score));
+  if(A.report.length){ m.report=avg(last3(A.report,a=>a.score)); m.observed=avg(last3(A.report,a=>a.observed?100:0)); }
+  if(A.document.length) m.factual=avg(last3(A.document,a=>a.score));
+  m.consistency=Math.min(100, base.consistency + n*6);
+  return m;
+}
+const measuresOf = p => p.live ? liveMeasures(p.base) : p.base;
+const overall = m => avg(MEASURES.map(x=>m[x.k]));
+function band(m){ const vals=MEASURES.map(x=>m[x.k]); if(vals.every(v=>v>=80)) return "ready"; return overall(m)>=60 ? "almost" : "not"; }
+const BAND = { ready:{t:"Ready for placement", c:"b-ready"}, almost:{t:"Almost ready", c:"b-almost"}, not:{t:"Not yet", c:"b-not"} };
+const bandChip = b => `<span class="band ${BAND[b].c}">${BAND[b].t}</span>`;
+const tone = v => v>=80?"c-ok":v>=60?"c-warn":"c-bad";
+
+/* ---------- AI layer: Vercel function, or Claude in the artifact preview, or instant checks only ---------- */
+let AI = { state:"unknown", sample:null };
+function setAI(state){ AI.state=state; const d=$("#aiDot"), t=$("#aiText"); d.className="dot"+(state==="on"?" on":state==="off"?" off":""); t.textContent= state==="on"?"AI feedback on": state==="off"?"Instant checks only":"AI feedback"; }
+(async()=>{ try{ if(window.claude && typeof window.claude.use==="function"){ AI.sample = await window.claude.use("sample"); if(AI.sample){ setAI("on"); return; } } }catch(e){} setAI("unknown"); })();
+const PROMPTS = {
+  report: t => `You are a Japanese care-communication trainer preparing foreign care workers (from India) for Japanese nursing homes. Evaluate a trainee's verbal report (報告) to the shift leader, written in Japanese.\n\nScenario facts: Time 10:15. Resident 田中さん (86) found on the floor beside her bed in her room. Awake and talking; says her right lower back (腰) hurts. The trainee has not moved her and is staying with her. The trainee needs a nurse to come and check her. The trainee did NOT see her fall.\n\nRubric: 1 what (time + what was observed; report finding her, not that she fell), 2 condition, 3 action, 4 help. Also polite です/ます form.\n\nTrainee's report:\n<<<${t}>>>\n\nReply with only a JSON object:\n{"what":{"ok":true,"note":"..."},"condition":{"ok":true,"note":"..."},"action":{"ok":true,"note":"..."},"help":{"ok":true,"note":"..."},"observed_not_assumed":{"ok":true,"note":"..."},"politeness":{"ok":true,"note":"..."},"try_next":"...","model_answer_ja":"...","model_answer_en":"..."}\nNotes in plain English, at most 20 words each.`,
+  document: t => `You are a Japanese care-documentation trainer preparing foreign care workers (from India) for Japanese nursing homes. Evaluate a trainee's care record (介護記録) in Japanese.\n\nFacts: 10:15 offered a bath; 田中さん (86) said 「今日は入りたくない」, cold and tired. 10:30 foot bath offered and given. Calm afterwards, said it felt warm. Plan: offer bath again after lunch.\n\nTrainee's record:\n<<<${t}>>>\n\nReply with only a JSON object:\n{"facts_only":{"ok":true,"note":"..."},"times":{"ok":true,"note":"..."},"resident_words":{"ok":true,"note":"..."},"actions_and_next":{"ok":true,"note":"..."},"flagged":[{"phrase":"...","why":"...","instead":"..."}],"model_record_ja":"...","model_record_en":"..."}\nNotes in plain English, at most 20 words each.`,
+  "respond-feedback": turns => `You are a Japanese care-communication trainer preparing foreign care workers (from India) for Japanese nursing homes. Review the trainee's replies in this role-play, where an 86-year-old resident (田中さん) refuses her morning bath.\n\nConversation:\n${turns.map(t=>(t.role==="res"?"Resident: ":"Trainee: ")+t.ja).join("\n")}\n\nJudge only the trainee's lines. Reply with only a JSON object:\n{"comprehension":{"ok":true,"note":"..."},"respect":{"ok":true,"note":"..."},"response":{"ok":true,"note":"..."},"try_next_en":"...","try_next_ja":"..."}\nNotes in plain English, at most 20 words each.`
+};
+const RES_RULES = `Role-play. You are 田中さん, an 86-year-old woman living in a Japanese nursing home. It is 10:15 in the morning. A care worker is encouraging you to take your bath, and you don't want to: you feel a little cold and tired.\nReply ONLY as 田中さん, in short, natural spoken Japanese (one or two sentences). Then a new line starting with "EN: " and an English translation.\nSoften if the care worker acknowledges your feelings, offers a choice of time, or offers an alternative. Become more reluctant if ordered or rushed. Never break character.`;
+async function ai(kind, input){
+  if(AI.state==="off") throw {code:"off"};
+  if(AI.sample){
+    try{
+      if(kind==="resident"){ const msgs=[{role:"user",content:RES_RULES+"\n\n(The care worker comes in to help with the bath.)"}]; input.turns.forEach((t,i)=>{ if(i===0){ msgs.push({role:"assistant",content:t.ja+"\nEN: "+t.en}); return;} msgs.push(t.role==="tr"?{role:"user",content:t.ja}:{role:"assistant",content:t.ja+(t.en?"\nEN: "+t.en:"")}); });
+        const out = await AI.sample(msgs,{modelTier:"quick",cache:false}); return {text:out.text}; }
+      const p = kind==="respond-feedback" ? PROMPTS[kind](input.turns) : PROMPTS[kind](input.text);
+      return {data: await AI.sample.json(p)};
+    }catch(e){ if(e && ["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed"].includes(e.code)){ AI.sample=null; setAI("off"); } throw e; }
+  }
+  const r = await fetch("/api/ai",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({kind,input})}).catch(()=>null);
+  if(!r || !r.ok){ setAI("off"); throw {code:"off"}; }
+  const j = await r.json().catch(()=>null); if(!j||!j.ok){ throw {code:"bad"}; }
+  setAI("on"); return j.data ? {data:j.data} : {text:j.text};
+}
+
+/* ---------- instant rule checks ---------- */
+const politeEnd=/(ます|ました|ません|ませんか|ますか|です|でした|ですか|ください|でしょうか|いただけますか|お願いします)$/;
+const sentences=t=>t.split(/[。！？!?\n]+/).map(s=>s.trim()).filter(Boolean);
+function ruleReport(t){ const time=/(\d{1,2}|[一二三四五六七八九十]+)\s*時|\d{1,2}[:：]\d{2}|ごろ|頃/.test(t), found=/発見|見つけ|倒れて(い|お)|座り込|床に/.test(t), assumed=/転倒し|転ん|転び|落ち(まし|た)/.test(t)&&!found, cond=/意識|痛|出血|呼吸|顔色|けが|怪我|返事|話せ|話して/.test(t), action=/動かさ|様子を見|そば|付き添|待って|ナースコール|呼びました|押しました|見守/.test(t), help=/お願い|来てください|来ていただ|確認して|呼んで|いただけ/.test(t); const impolite=sentences(t).filter(s=>!politeEnd.test(s));
+  const parts=[time&&(found||assumed),cond,action,help]; const n=parts.filter(Boolean).length; return {time,found,assumed,cond,action,help,impolite,n,score:Math.round(n/4*100)}; }
+function ruleRespond(turns){ const tr=turns.filter(m=>m.role==="tr").map(m=>m.ja).join("\n"); const r={has:tr.length>0, ack:/そうなんですね|そうですか|そうですね|わかりました|なるほど|そうでしたか|お疲れ/.test(tr), gentle:/ませんか|ましょうか|いかがですか|どうですか|どちらが|しませんか/.test(tr), alt:/足湯|あとで|後で|お昼|午後|明日|シャワー|清拭|どちら|温か|あたたか|暖か/.test(tr), command:/入ってください|入りなさい|入って。|だめです|ダメです|入らないと|早く/.test(tr)}; r.n=[r.ack,r.gentle,r.alt,!r.command].filter(Boolean).length; r.score=Math.round(r.n/4*100); return r; }
+const OPINION=[[/わがまま/,"わがまま","selfish"],[/機嫌が悪/,"機嫌が悪","in a bad mood"],[/頑固/,"頑固","stubborn"],[/非協力/,"非協力","uncooperative"],[/言うことを聞かな/,"言うことを聞かな","won’t listen"],[/面倒/,"面倒","troublesome"],[/今日も/,"今日も","“again today” judges a pattern"]];
+function ruleDoc(t){ const time=/\d{1,2}[:：]\d{2}|\d{1,2}\s*時/.test(t), quote=/「[^」]+」/.test(t), action=/実施|提案|介助|声かけ|勧め|対応|しました|した。/.test(t), next=/予定|再度|申し送|引き継|昼食後|午後/.test(t); const flags=OPINION.filter(([re])=>re.test(t)); const n=[time,quote,action,flags.length===0&&!!t.trim()].filter(Boolean).length; return {time,quote,action,next,flags,n,score:Math.round(n/4*100)}; }
+const li=(st,title,note)=>`<li><span class="mk ${st}" aria-hidden="true">${ic(st==="ok"?"check":st==="warn"?"bang":"x")}</span><div><b>${esc(title)}</b><span class="sr">${st==="ok"?" — passed":st==="warn"?" — check":" — missing"}</span>${note?`<p>${esc(note)}</p>`:""}</div></li>`;
+
+/* ---------- routing ---------- */
+function go(role, view="home"){ S.role=role; S.view=view; const h = view==="home"? role : role+"-"+view; if(location.hash.slice(1)!==h) history.replaceState(null,"","#"+h); render(); $("#main").focus({preventScroll:true}); window.scrollTo({top:0,behavior:reduce?"auto":"smooth"}); }
+function fromHash(){ const h=location.hash.slice(1); const [role,view]=h.split("-"); S.role=["trainee","trainer","centre","learn"].includes(role)?role:"trainee"; S.view=(S.role==="trainee"&&MOMENTS[view])?view:"home"; }
+document.querySelectorAll(".role").forEach(b=>b.addEventListener("click",()=>go(b.dataset.role)));
+window.addEventListener("hashchange",()=>{ fromHash(); render(); });
+
+function render(){
+  document.querySelectorAll(".role").forEach(b=>{ if(b.dataset.role===S.role) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); });
+  closeLayer();
+  const m=$("#main");
+  if(S.role==="trainee") m.innerHTML = S.view==="home" ? traineeHome() : practice(S.view);
+  if(S.role==="trainer") m.innerHTML = trainerView();
+  if(S.role==="centre") m.innerHTML = centreView();
+  if(S.role==="learn") m.innerHTML = learnView();
+  wire(); animateIn(m);
+}
+
+/* ---------- trainee ---------- */
+function traineeHome(){
+  const me=COHORT[0], m=measuresOf(me), o=overall(m), b=band(m);
+  const weakest=MEASURES.filter(x=>x.k!=="consistency").sort((a,b)=>m[a.k]-m[b.k])[0];
+  const card=(k,i)=>{ const M=MOMENTS[k], at=S.attempts[k], best=at.length?Math.max(...at.map(a=>a.score)):0;
+    return `<button class="card moment enter" style="--i:${i+1}" data-open="${k}"><div class="spread"><span class="ic">${ic(M.icon)}</span>${S.assigned[k]?'<span class="assigned">Assigned by trainer</span>':""}</div><div><p class="label">${M.letter} · ${M.name}</p><h3>${esc(M.sit)}</h3></div><div class="meter" aria-hidden="true"><i data-w="${best}"></i></div><div class="mfoot"><span>${at.length} attempt${at.length===1?"":"s"} · best ${best}%</span><span style="color:var(--ink);font-weight:600">Practise →</span></div></button>`; };
+  return `<div class="view-head"><div><p class="label">Trainee · Batch Nov-A</p><h1>Welcome back, Priya</h1><p>Practise the moments that matter. Get scored. Prove you’re ready.</p></div><span class="sample">Sample trainee and batch</span></div>
+  <div class="card hero enter" style="--i:0">${ring(o,132,11,"readiness")}<div><p class="label" style="color:var(--on-deep-muted)">Your workplace-readiness</p><h2>${BAND[b].t}</h2><p>Your centre sees this score when deciding who is ready for placement in Japan.</p><span class="focus-tip">${ic("target")}<span>Focus next: <b>${esc(weakest.name)}</b> (${m[weakest.k]}%)</span></span></div></div>
+  <h2 style="font-size:20px;margin:28px 0 12px">Today’s practice</h2>
+  <div class="grid g3">${["respond","report","document"].map(card).join("")}</div>
+  <div class="card enter" style="--i:4;margin-top:16px"><div class="spread"><div><p class="label">How each session works</p><p style="margin-top:4px">Practise a scenario → instant score against your centre’s rubric → retry until it passes → your readiness score updates.</p></div><button class="btn ghost sm" id="resetMe">${ic("refresh")} Reset my attempts</button></div></div>
+  ${footer()}`;
+}
+
+function practice(k){
+  const M=MOMENTS[k]; const at=S.attempts[k];
+  const head=`<button class="crumb" data-home>${ic("back")} All practice</button><div class="view-head"><div><p class="label">${M.letter} · ${M.name}</p><h1>${esc(M.sit)}</h1></div>${at.length>1?`<div class="history" style="color:var(--ink)"><span class="label">Your last ${Math.min(at.length,8)} scores</span>${spark(at.slice(-8).map(a=>a.score))}</div>`:""}</div>`;
+  if(k==="report") return head+`<div class="grid g2">
+    <div class="grid" style="align-content:start">
+      <div class="card scen enter" style="--i:0"><p class="label">Simulated incident · report to the shift leader</p><h2>${esc(M.scen)}</h2><dl class="facts"><dt>Time</dt><dd>10:15</dd><dt>Resident</dt><dd>田中さん (Tanaka-san), 86, in her room</dd><dt>You see</dt><dd>On the floor beside her bed, awake and talking. Says her lower back hurts.</dd><dt>You did</dt><dd>You have not moved her. You are staying with her.</dd><dt>You need</dt><dd>A nurse to come and check her.</dd></dl><p class="note-line">You did not see her fall. Report what you found.</p></div>
+      <div class="card enter" style="--i:1"><div class="spread"><label class="field-label" for="repIn">Your report, in Japanese</label><div class="row"><button class="chip" data-fill="strong">Strong sample</button><button class="chip" data-fill="weak">Weak sample</button><button class="chip" data-fill="clear">Clear</button></div></div>
+        <textarea id="repIn" lang="ja" aria-describedby="repHint">${esc(S.reportText)}</textarea><p class="hint" id="repHint">Four parts: what you found · her condition · what you did · what you need.</p>
+        <div class="row" style="margin-top:12px"><button class="btn" id="repCheck">${ic("spark")} Check my report</button></div></div>
+    </div>
+    <div class="card enter" style="--i:2" id="fb" aria-live="polite"></div></div>`+footer();
+  if(k==="document") return head+`<div class="grid g2">
+    <div class="grid" style="align-content:start">
+      <div class="card scen enter" style="--i:0"><p class="label">Care record · after the bath refusal</p><h2>${esc(M.scen)}</h2><dl class="facts"><dt>10:15</dt><dd>You offered a bath. She said 「今日は入りたくない」, cold and tired.</dd><dt>10:30</dt><dd>You offered a foot bath; she agreed and you gave it.</dd><dt>After</dt><dd>She looked calm and said it felt warm.</dd><dt>Next</dt><dd>Offer the bath again after lunch.</dd></dl><p class="note-line">Record facts: times, her words, what you did. No opinions about her.</p></div>
+      <div class="card enter" style="--i:1"><div class="spread"><label class="field-label" for="docIn">Your record, in Japanese</label><div class="row"><button class="chip" data-dfill="strong">Strong sample</button><button class="chip" data-dfill="weak">Weak sample</button><button class="chip" data-dfill="clear">Clear</button></div></div>
+        <textarea id="docIn" lang="ja">${esc(S.docText)}</textarea><div class="preview" id="docPrev" aria-label="Your record with opinion words highlighted"></div>
+        <div class="row" style="margin-top:12px"><button class="btn" id="docCheck">${ic("spark")} Check my record</button></div></div>
+    </div>
+    <div class="card enter" style="--i:2" id="fb" aria-live="polite"></div></div>`+footer();
+  return head+`<div class="grid g2">
+    <div class="grid" style="align-content:start">
+      <div class="card scen enter" style="--i:0"><p class="label">Simulated conversation · bath refusal</p><h2>${esc(M.scen)}</h2><dl class="facts"><dt>Resident</dt><dd>田中さん (Tanaka-san), 86</dd><dt>Your goal</dt><dd>Acknowledge her feelings, then offer a gentle choice or an alternative. Don’t order.</dd></dl></div>
+      <div class="card enter" style="--i:1"><div class="spread"><p class="field-label" style="margin:0">Conversation</p><button class="chip" id="chatReset">${ic("refresh","i")} Start over</button></div>
+        <div class="chat" id="chat" aria-live="polite"></div>
+        <div class="row" style="margin-top:12px">${SAYS.map((s,i)=>`<button class="chip ja" data-say="${i}" title="${esc(s[1])}">${esc(s[0].slice(0,16))}…</button>`).join("")}</div>
+        <div class="composer"><label class="sr" for="chatIn">Your reply in Japanese</label><textarea id="chatIn" lang="ja" placeholder="日本語で返事をしてください"></textarea><button class="btn" id="chatSend" aria-label="Send reply">${ic("send")}</button></div>
+        <p class="hint">Tap a phrase to load it, or type your own. Enter sends.</p></div>
+    </div>
+    <div class="card enter" style="--i:2" id="fb" aria-live="polite"></div></div>`+footer();
+}
+
+function scoreHead(score, title){ return `<div class="fb-top">${ring(score,96,9,"score")}<div><p class="label">Instant check</p><h3 style="font-size:20px">${esc(title)}</h3></div></div>`; }
+function aiShell(id, text){ return `<div class="ai-box"><p class="label">AI feedback</p><div class="ai-body" id="${id}">${text?`<p style="color:var(--muted)">${esc(text)}</p>`:""}</div></div>`; }
+function aiErr(e){ if(e && e.code==="off") return "AI feedback isn’t connected here, so the instant check above is your score. Add an API key to switch it on."; if(e&&e.code==="rate_limited") return "AI is busy. Try again in a minute."; return "Couldn’t reach the AI just now. The instant check still counts."; }
+function thinking(el){ el.innerHTML=`<div class="thinking"><span class="spin"></span>Reviewing your answer…</div>`; }
+function aiList(pairs, j){ return `<ul class="checks">${pairs.map(([k,t])=>{ const v=(j&&j[k])||{}; return li(v.ok===true||v.ok==="true"?"ok":"no", t, String(v.note||"")); }).join("")}</ul>`; }
+function model(ja,en,t="Model answer"){ return `<div class="model"><p class="label">${esc(t)}</p><p class="j" lang="ja">${esc(ja)}</p>${en?`<p class="e">${esc(en)}</p>`:""}</div>`; }
+
+function renderReportFB(withAI){
+  const t=$("#repIn").value.trim(), r=ruleReport(t), fb=$("#fb");
+  fb.innerHTML = scoreHead(t?r.score:0, t? `${r.n} of 4 parts` : "Write your report") + `<ul class="checks" id="repChecks">
+   ${li(r.time&&(r.found||r.assumed)?"ok":"no","What happened", r.time?(r.found||r.assumed?"Time and what you saw are there.":"Say what you found, e.g. 床に倒れている田中さんを発見しました."):"Add the time, e.g. 10時15分ごろ.")}
+   ${li(r.cond?"ok":"no","Condition", r.cond?"Her condition is described.":"Say if she is conscious and where it hurts.")}
+   ${li(r.action?"ok":"no","Action taken", r.action?"You said what you did.":"Say what you did, e.g. 動かさずに、そばで様子を見ています.")}
+   ${li(r.help?"ok":"no","Help needed", r.help?"You asked for specific help.":"Ask for what you need, e.g. 看護師さんに確認をお願いできますか.")}
+   ${li(r.assumed?"warn":(r.found?"ok":"warn"),"Observed, not assumed", r.assumed?"You said she fell. You didn’t see it: say you found her on the floor.":r.found?"You reported what you saw.":"Make clear what you actually saw.")}
+   ${li(!t?"warn":r.impolite.length?"warn":"ok","Polite form", !t?"Write your report first.":r.impolite.length?"Use です／ます in every sentence: 「"+r.impolite[0]+"」":"Every sentence uses です／ます.")}</ul>` + aiShell("aiOut", withAI?"":"Press “Check my report” to save this attempt and get AI feedback with a model answer.");
+  animateIn(fb);
+  if(!withAI) return;
+  record("report",{score:r.score, observed:r.found&&!r.assumed});
+  const out=$("#aiOut"); thinking(out);
+  ai("report",{text:t}).then(({data:j})=>{ out.innerHTML = aiList([["what","What happened"],["condition","Condition"],["action","Action taken"],["help","Help needed"],["observed_not_assumed","Observed, not assumed"],["politeness","Polite form"]], j) + (j.try_next?`<p><b>Try next:</b> ${esc(j.try_next)}</p>`:"") + (j.model_answer_ja?model(j.model_answer_ja,j.model_answer_en):""); })
+  .catch(e=>{ out.innerHTML=`<p style="color:var(--muted)">${esc(aiErr(e))}</p>`+model(REP.strong,"At about 10:15, I found Tanaka-san lying on the floor of her room. She is fully conscious and says her lower back hurts. I haven’t moved her and am staying with her. Could a nurse come and check her, please?","Model answer (from the scenario)"); });
+}
+function docPreview(t){ let h=esc(t); OPINION.forEach(([re,w])=>{ h=h.split(esc(w)).join(`<mark class="flag">${esc(w)}</mark>`); }); return h||'<span style="color:var(--muted)">Your record appears here with opinion words highlighted.</span>'; }
+function renderDocFB(withAI){
+  const t=$("#docIn").value.trim(), r=ruleDoc(t), fb=$("#fb"); $("#docPrev").innerHTML=docPreview(t);
+  fb.innerHTML = scoreHead(t?r.score:0, t?`${r.n} of 4 checks`:"Write your record") + `<ul class="checks">
+   ${li(r.time?"ok":"no","Times recorded", r.time?"Each event has a time.":"Add times, e.g. 10:15.")}
+   ${li(r.quote?"ok":"no","Her own words", r.quote?"You quoted what she said in 「 」.":"Quote her, e.g. 「今日は入りたくない」と話される.")}
+   ${li(r.action?"ok":"no","What you did", r.action?"Your actions are recorded.":"Record what you did, e.g. 足湯を実施.")}
+   ${li(!t?"warn":r.flags.length?"warn":"ok","Facts, not opinions", !t?"Write your record first.":r.flags.length?"Opinion words: "+r.flags.map(f=>f[1]+" ("+f[2]+")").join(", ")+". Write what she said or did instead.":"No opinion words found.")}
+   ${li(r.next?"ok":"warn","Next step", r.next?"The next shift knows what to do.":"Add what happens next, e.g. 昼食後に再度声かけ予定.")}</ul>` + aiShell("aiOut", withAI?"":"Press “Check my record” to save this attempt and get AI feedback with a model record.");
+  animateIn(fb);
+  if(!withAI) return;
+  record("document",{score:r.score});
+  const out=$("#aiOut"); thinking(out);
+  ai("document",{text:t}).then(({data:j})=>{ const fl=Array.isArray(j.flagged)?j.flagged:[]; out.innerHTML = aiList([["facts_only","Facts, not opinions"],["times","Times"],["resident_words","Her own words"],["actions_and_next","Actions and next step"]], j) + fl.slice(0,4).map(f=>`<p><mark class="flag ja">${esc(f.phrase)}</mark> ${esc(f.why||"")} ${f.instead?`<span class="ja">→ ${esc(f.instead)}</span>`:""}</p>`).join("") + (j.model_record_ja?model(j.model_record_ja,j.model_record_en,"Model record"):""); })
+  .catch(e=>{ out.innerHTML=`<p style="color:var(--muted)">${esc(aiErr(e))}</p>`+model(DOC.strong,"10:15 Offered bath; she said, ‘I don’t want to bathe today. It’s cold and I’m tired.’ 10:30 Suggested foot bath; with her agreement, gave a foot bath. She said ‘It’s warm’; calm expression. Plan to offer the bath again after lunch.","Model record (from the scenario)"); });
+}
+
+function chatInit(){ if(!S.chat) S.chat=[{role:"res",ja:OPEN.ja,en:OPEN.en}]; }
+function drawChat(){ const c=$("#chat"); if(!c) return; c.innerHTML=S.chat.map(m=>`<div class="msg ${m.role}"><div class="who">${m.role==="res"?"AI resident · 田中さん":"You"}</div>${m.typing?'<div class="typing" aria-label="Tanaka-san is typing"><i></i><i></i><i></i></div>':`<div class="j" lang="ja">${esc(m.ja)}</div>${m.en?`<div class="e">${esc(m.en)}</div>`:""}`}</div>`).join(""); c.scrollTop=c.scrollHeight; }
+function renderRespondFB(){
+  const r=ruleRespond(S.chat), fb=$("#fb");
+  fb.innerHTML = scoreHead(r.has?r.score:0, r.has?`${r.n} of 4 checks`:"Reply to Tanaka-san") + `<ul class="checks">
+   ${li(r.ack?"ok":"no","Acknowledged her feelings", r.ack?"You accepted how she feels first.":"Start by acknowledging her, e.g. そうなんですね。")}
+   ${li(r.gentle?"ok":"no","Gentle offer, not an order", r.gentle?"〜ませんか／どちらが invite rather than tell.":"Offer with 〜ませんか, or ask which she prefers.")}
+   ${li(r.alt?"ok":"no","Choice or alternative", r.alt?"You gave her an option.":"Offer an option: a foot bath, or a later time.")}
+   ${li(r.command?"warn":"ok","No pressure", r.command?"入ってください or だめです can feel like orders.":"Nothing in your replies pressures her.")}</ul>` + `<div class="ai-box"><div class="spread"><p class="label">AI feedback</p><button class="btn ghost sm" id="respFB" ${r.has?"":"disabled"}>${ic("spark")} Get feedback</button></div><div class="ai-body" id="aiOut"><p style="color:var(--muted)">Reply to Tanaka-san, then get feedback on the whole conversation. That saves your attempt.</p></div></div>`;
+  animateIn(fb);
+  $("#respFB").addEventListener("click", ()=>{ const r2=ruleRespond(S.chat); record("respond",{score:r2.score}); const out=$("#aiOut"); thinking(out);
+    ai("respond-feedback",{turns:S.chat.filter(m=>!m.typing)}).then(({data:j})=>{ out.innerHTML=aiList([["comprehension","Comprehension"],["respect","Respectful language"],["response","Appropriate response"]], j)+(j.try_next_ja?model(j.try_next_ja,j.try_next_en,"Try next"):""); })
+    .catch(e=>{ out.innerHTML=`<p style="color:var(--muted)">${esc(aiErr(e))}</p>`+model("今と、お昼のあと、どちらがいいですか？","Which would you prefer: now, or after lunch?","Try next"); }); });
+}
+function scripted(text){ if(/入ってください|だめです|ダメです|入らないと|早く/.test(text)) return {ja:"いやよ。寒いし、疲れてるのよ。",en:"No. It’s cold, and I’m tired."}; if(/足湯/.test(text)) return {ja:"足湯？…まあ、足だけならいいかしらね。",en:"A foot bath? …Well, just my feet would be all right."}; if(/お昼|あとで|後で|午後|どちら/.test(text)) return {ja:"そうねえ…それなら、お昼のあとにしようかしら。",en:"Well… maybe after lunch, then."}; return {ja:"うーん…今日はちょっとね。",en:"Hmm… not today."}; }
+async function send(text){ text=(text||"").trim(); if(!text) return; S.chat.push({role:"tr",ja:text}); const p={role:"res",typing:true,ja:"",en:""}; S.chat.push(p); drawChat(); renderRespondFB(); $("#chatSend").disabled=true;
+  let r=null; try{ const out=await ai("resident",{turns:S.chat.filter(m=>!m.typing)}); const parts=String(out.text||"").split(/\n?EN:\s*/); r={ja:parts[0].trim(),en:(parts[1]||"").trim()}; }catch(e){ await new Promise(z=>setTimeout(z,reduce?0:700)); r=scripted(text); }
+  p.typing=false; p.ja=r.ja; p.en=r.en; drawChat(); $("#chatSend").disabled=false; }
+
+function record(k, a){ const before=overall(measuresOf(COHORT[0])); S.attempts[k].push({...a, ts:Date.now()}); save(); const after=overall(measuresOf(COHORT[0])); const d=after-before; toast(`Attempt saved · readiness ${after}%${d?` (${d>0?"+":""}${d})`:""}`); }
+
+/* ---------- trainer ---------- */
+function trainerView(){
+  const rows=COHORT.map(p=>({p, m:measuresOf(p)})); const bands=rows.map(r=>band(r.m));
+  const ready=bands.filter(b=>b==="ready").length, avgR=avg(rows.map(r=>overall(r.m)));
+  const allSkills=MEASURES.map(x=>({x, v:avg(rows.map(r=>r.m[x.k]))})).sort((a,b)=>a.v-b.v); const missed=allSkills.filter(o=>o.x.k!=="consistency");
+  return `<div class="view-head"><div><p class="label">Trainer · Batch Nov-A</p><h1>Where the batch needs you</h1><p>Every attempt rolls up here. Click a trainee to see their gaps and assign practice.</p></div><span class="sample">Sample batch · Priya’s row is live</span></div>
+  <div class="grid g4">
+    <div class="card kpi enter" style="--i:0"><p class="label">Trainees</p><div class="n" data-count="${COHORT.length}">0</div><p>Batch Nov-A</p></div>
+    <div class="card kpi enter" style="--i:1"><p class="label">Ready for placement</p><div class="n" style="color:var(--ok)" data-count="${ready}">0</div><p>all five skills at 80+</p></div>
+    <div class="card kpi enter" style="--i:2"><p class="label">Average readiness</p><div class="n"><span data-count="${avgR}">0</span>%</div><p>up from ${TREND[0]}% in week 1</p></div>
+    <div class="card kpi enter" style="--i:3"><p class="label">Weakest skill</p><div class="n" style="font-size:22px;margin-top:10px">${esc(missed[0].x.name)}</div><p>batch average ${missed[0].v}%</p></div>
+  </div>
+  <div class="card enter" style="--i:4;margin-top:16px"><div class="spread"><h2 style="font-size:20px">Skill heatmap</h2><div class="legend"><span><i class="sw" style="background:var(--ok)"></i>80+</span><span><i class="sw" style="background:var(--warn)"></i>60–79</span><span><i class="sw" style="background:var(--bad)"></i>under 60</span></div></div>
+   <div class="tbl-wrap" style="margin-top:10px"><table><thead><tr><th>Trainee</th>${MEASURES.map(x=>`<th>${esc(x.name)}</th>`).join("")}<th>Readiness</th><th>Last active</th></tr></thead><tbody>
+   ${rows.map(({p,m})=>`<tr class="clickable" data-trainee="${p.id}" tabindex="0" aria-label="Open ${esc(p.name)}"><td><b>${esc(p.name)}</b>${p.live?'<span class="you">LIVE</span>':""}</td>${MEASURES.map(x=>`<td><span class="cell ${tone(m[x.k])}">${m[x.k]}</span></td>`).join("")}<td>${bandChip(band(m))}</td><td style="color:var(--muted)">${p.live?"Today":esc(p.last)}</td></tr>`).join("")}
+   </tbody></table></div></div>
+  <div class="grid g2" style="margin-top:16px">
+   <div class="card enter" style="--i:5"><h2 style="font-size:20px">Batch average by skill</h2><div class="bars">${allSkills.slice().reverse().map(o=>`<div class="bar"><span>${esc(o.x.name)}</span><span class="t"><i data-w="${o.v}" style="background:${o.v>=80?"var(--ok)":o.v>=60?"var(--warn)":"var(--bad)"}"></i></span><span class="v">${o.v}%</span></div>`).join("")}</div></div>
+   <div class="card enter" style="--i:6"><h2 style="font-size:20px">Suggested next step</h2><p style="margin-top:8px">The batch is weakest on <b>${esc(missed[0].x.name)}</b>. Assign the matching scenario to everyone below 60.</p><div class="row" style="margin-top:14px"><button class="btn" data-assign-all="${missed[0].x.from.toLowerCase()}">${ic("plus")} Assign ${esc(missed[0].x.from)} practice</button></div></div>
+  </div>${footer()}`;
+}
+function openTrainee(id){
+  const p=COHORT.find(x=>x.id===id), m=measuresOf(p), b=band(m), weak=MEASURES.filter(x=>m[x.k]<80);
+  openLayer(`<aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="dT"><div class="spread"><div><p class="label">Trainee</p><h2 id="dT">${esc(p.name)}</h2></div><button class="x" data-close aria-label="Close">${ic("x")}</button></div>
+   <div class="row" style="margin:16px 0;gap:16px">${ring(overall(m),104,10,"readiness")}<div>${bandChip(b)}<p style="margin-top:8px;color:var(--muted);font-size:14px">${weak.length?weak.length+" skill"+(weak.length>1?"s":"")+" below 80":"All skills at 80 or above"}</p></div></div>
+   <div class="bars">${MEASURES.map(x=>`<div class="bar"><span>${esc(x.name)}</span><span class="t"><i data-w="${m[x.k]}" style="background:${m[x.k]>=80?"var(--ok)":m[x.k]>=60?"var(--warn)":"var(--bad)"}"></i></span><span class="v">${m[x.k]}</span></div>`).join("")}</div>
+   <h3 style="font-size:17px;margin:22px 0 10px">Assign practice</h3><div class="row">${["respond","report","document"].map(k=>`<button class="btn ghost sm" data-assign="${k}" data-who="${p.id}">${ic(MOMENTS[k].icon)} ${MOMENTS[k].name}</button>`).join("")}</div>
+   ${p.live?'<p class="hint">Priya’s scores update live from the Trainee tab.</p>':""}</aside>`);
+}
+
+/* ---------- centre ---------- */
+function centreView(){
+  const rows=COHORT.map(p=>({p,m:measuresOf(p)})).map(r=>({...r,o:overall(r.m),b:band(r.m)})).sort((a,b)=>b.o-a.o);
+  const g=k=>rows.filter(r=>r.b===k); const n=rows.length;
+  return `<div class="view-head"><div><p class="label">Centre · Kerala training centre</p><h1>Who is ready for placement?</h1><p>Every candidate’s workplace-readiness, backed by their practice.</p></div><span class="sample">Sample centre and batch · pass marks set with each centre</span></div>
+  <div class="grid g3">
+   ${[["ready","Ready for placement","Put forward to employers"],["almost","Almost ready","Targeted practice this week"],["not","Not yet","More training first"]].map(([k,t,s],i)=>`<div class="card bandcard ${k} enter" style="--i:${i}"><p class="label">${t}</p><div class="n" data-count="${g(k).length}">0</div><p class="who">${g(k).map(r=>esc(r.p.name)).join(" · ")||"—"}</p><p class="hint" style="margin-top:6px">${s}</p></div>`).join("")}
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+   <div class="card enter" style="--i:3"><h2 style="font-size:20px">Batch Nov-A</h2><div class="stack" role="img" aria-label="${g("ready").length} ready, ${g("almost").length} almost ready, ${g("not").length} not yet"><i data-w="${g("ready").length/n*100}" style="background:var(--ok)"></i><i data-w="${g("almost").length/n*100}" style="background:var(--warn)"></i><i data-w="${g("not").length/n*100}" style="background:var(--bad)"></i></div><div class="legend"><span><i class="sw" style="background:var(--ok)"></i>Ready ${g("ready").length}</span><span><i class="sw" style="background:var(--warn)"></i>Almost ${g("almost").length}</span><span><i class="sw" style="background:var(--bad)"></i>Not yet ${g("not").length}</span></div></div>
+   <div class="card enter" style="--i:4;color:var(--ink)"><div class="spread"><h2 style="font-size:20px">Average readiness by week</h2><span class="band b-ready">+${TREND[TREND.length-1]-TREND[0]} pts</span></div><div style="margin-top:12px">${spark(TREND,320,70)}</div><p class="hint">Weeks 1–5 · ${TREND.join("% → ")}%</p></div>
+  </div>
+  <div class="card enter" style="--i:5;margin-top:16px"><h2 style="font-size:20px">Candidates</h2><div class="tbl-wrap" style="margin-top:10px"><table><thead><tr><th>Candidate</th><th>Readiness</th><th>Band</th><th>Weakest skill</th><th></th></tr></thead><tbody>
+   ${rows.map(r=>{ const w=[...MEASURES].sort((a,b)=>r.m[a.k]-r.m[b.k])[0]; return `<tr><td><b>${esc(r.p.name)}</b>${r.p.live?'<span class="you">LIVE</span>':""}</td><td><span class="cell ${tone(r.o)}">${r.o}</span></td><td>${bandChip(r.b)}</td><td style="color:var(--muted)">${esc(w.name)} (${r.m[w.k]})</td><td><button class="btn ghost sm" data-report="${r.p.id}">${ic("doc")} Readiness report</button></td></tr>`; }).join("")}
+  </tbody></table></div></div>${footer()}`;
+}
+function openReport(id){
+  const p=COHORT.find(x=>x.id===id), m=measuresOf(p), b=band(m), o=overall(m);
+  const rec = b==="ready" ? "Recommended for placement. Consistent across all moments." : b==="almost" ? "Close. Complete targeted practice on the weak skills below, then reassess." : "Not ready for placement. Continue full training before reassessment.";
+  openLayer(`<div class="modal" role="dialog" aria-modal="true" aria-labelledby="rT"><div class="spread"><div><p class="label">Workplace-readiness report</p><h2 id="rT">${esc(p.name)}</h2></div><button class="x" data-close aria-label="Close">${ic("x")}</button></div>
+   <div class="report-card"><div class="row" style="gap:18px">${ring(o,110,10,"overall")}<div>${bandChip(b)}<p style="margin-top:8px">${esc(rec)}</p></div></div>
+   <div class="bars" style="margin-top:16px">${MEASURES.map(x=>`<div class="bar"><span>${esc(x.name)}<br><small style="color:var(--muted)">${esc(x.from)}</small></span><span class="t"><i data-w="${m[x.k]}" style="background:${m[x.k]>=80?"var(--ok)":m[x.k]>=60?"var(--warn)":"var(--bad)"}"></i></span><span class="v">${m[x.k]}</span></div>`).join("")}</div>
+   <p class="hint" style="margin-top:16px">Issued by Kerala training centre (sample) · Batch Nov-A · ${new Date().toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})} · Scored against the centre’s rubric with Kizuna</p></div></div>`);
+}
+
+/* ---------- learn ---------- */
+const PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>';
+const ART={
+ respond:'<svg class="art" viewBox="0 0 320 180" aria-hidden="true"><rect x="34" y="34" width="150" height="40" rx="14" fill="#fff" opacity=".18"/><rect x="136" y="88" width="150" height="40" rx="14" fill="#fff" opacity=".28"/><rect x="34" y="140" width="110" height="26" rx="12" fill="#fff" opacity=".14"/><circle cx="270" cy="40" r="22" fill="#fff" opacity=".12"/></svg>',
+ report:'<svg class="art" viewBox="0 0 320 180" aria-hidden="true"><g fill="#fff"><rect x="40" y="30" width="200" height="22" rx="8" opacity=".26"/><rect x="40" y="62" width="170" height="22" rx="8" opacity=".2"/><rect x="40" y="94" width="150" height="22" rx="8" opacity=".16"/><rect x="40" y="126" width="185" height="22" rx="8" opacity=".12"/></g><g fill="#F4B98C" opacity=".9"><circle cx="262" cy="41" r="9"/><circle cx="262" cy="73" r="9"/><circle cx="262" cy="105" r="9"/><circle cx="262" cy="137" r="9"/></g></svg>',
+ document:'<svg class="art" viewBox="0 0 320 180" aria-hidden="true"><rect x="96" y="20" width="128" height="148" rx="10" fill="#fff" opacity=".16"/><g fill="#fff" opacity=".35"><rect x="112" y="42" width="96" height="8" rx="4"/><rect x="112" y="60" width="80" height="8" rx="4"/><rect x="112" y="78" width="90" height="8" rx="4"/><rect x="112" y="114" width="70" height="8" rx="4"/></g><rect x="108" y="92" width="64" height="14" rx="4" fill="#F1BE6B" opacity=".75"/><line x1="104" y1="99" x2="176" y2="99" stroke="#fff" stroke-width="3" opacity=".8"/></svg>'
+};
+const LESSONS={
+ respond:{t:"Gentle offers, not orders", len:"~3 min", d:"Acknowledge her feelings, offer a choice, never order. Animated walk-through of the bath refusal.", cover:["Why 「入ってください」 can feel like an order to an elderly resident","Acknowledge first: そうなんですね","Offer and give a choice: 〜ませんか、どちらがいいですか"]},
+ report:{t:"The four-part report", len:"~3 min", d:"What happened, her condition, what you did, what you need, in that order.", cover:["The four parts a shift leader listens for","Report what you saw, not what you assume","Polite です／ます under pressure"]},
+ document:{t:"Facts, not opinions", len:"~3 min", d:"Times, her own words, what you did, the next step, and why わがまま never goes in a record.", cover:["What a Japanese care record (介護記録) is for","Quoting the resident in 「 」","Words that read as judgements, and what to write instead"]}
+};
+const SHEETS={
+ report:{t:"The four-part report (報告)", sub:"For a fall or any incident", steps:[["What happened","Time and what you saw","10時15分ごろ、居室の床に倒れている田中さんを発見しました。"],["Her condition","Is she conscious? Where does it hurt?","意識ははっきりしていて、右の腰の痛みを訴えています。"],["What you did","Not moved, staying with her","動かさずに、その場で様子を見ています。"],["What you need","A clear, polite request","看護師さんに確認をお願いできますか。"]], doo:"Report what you saw: 床に倒れている…を発見しました", dont:"Don’t report what you didn’t see: 転んでしまいました (“she fell”)"},
+ respond:{t:"Gentle offers, not orders", sub:"For refusal, confusion or distress", steps:[["Acknowledge","Accept how she feels first","そうなんですね。"],["Offer gently","〜ませんか invites; it doesn’t tell","足湯から始めてみませんか？"],["Give a choice","Let her decide when","今と、お昼のあと、どちらがいいですか？"]], doo:"Slow down, soften, and let her choose", dont:"Avoid orders: 入ってください、だめですよ"},
+ document:{t:"Care records: facts, not opinions", sub:"For the end-of-shift record", steps:[["Time","Every event gets a time","10:15"],["Her words","Quote her in 「 」","「今日は入りたくない」と話される。"],["What you did","Actions, with her agreement","同意を得て足湯を実施。"],["Next step","What the next shift should do","昼食後に再度入浴の声かけを行う予定。"]], doo:"Write what she said and did", dont:"No judgements: わがまま (selfish), 機嫌が悪い (in a bad mood), 頑固 (stubborn)"}
+};
+function learnView(){
+  const keys=["respond","report","document"];
+  return `<div class="view-head"><div><p class="label">Learn · Lesson library</p><h1>Learn the moment, then practise it</h1><p>Short animated lessons and cheat sheets for each moment, used alongside practice.</p></div><span class="sample">Lessons coming with the pilot · cheat sheets work now</span></div>
+  <h2 class="sec-h">${ic("doc")} Animated lessons</h2>
+  <div class="grid g3">${keys.map((k,i)=>{ const L=LESSONS[k],M=MOMENTS[k]; return `<button class="card lesson enter" style="--i:${i}" data-lesson="${k}" aria-label="${esc(L.t)} lesson preview"><div class="thumb t${i+1}">${ART[k]}<span class="soon">Coming soon</span><span class="play">${PLAY}</span><span class="dur">${L.len}</span></div><div class="lb"><p class="label">${M.letter} · ${M.name}</p><h3>${esc(L.t)}</h3><p>${esc(L.d)}</p></div></button>`; }).join("")}</div>
+  <h2 class="sec-h">${ic("file")} Cheat sheets</h2>
+  <div class="grid g3">${keys.map((k,i)=>{ const S2=SHEETS[k]; return `<button class="card res enter" style="--i:${i+3}" data-sheet="${k}"><span class="ic">${ic(MOMENTS[k].icon)}</span><span><h3>${esc(S2.t)}</h3><p>${esc(S2.sub)} · ${S2.steps.length} steps with Japanese phrases</p><p style="color:var(--ink);font-weight:600;margin-top:8px">Open →</p></span></button>`; }).join("")}</div>
+  <div class="card enter" style="--i:6;margin-top:16px"><div class="spread"><div><p class="label">How it fits</p><p style="margin-top:4px">Watch the lesson → read the cheat sheet → practise the scenario → get scored. Trainers can assign all three together.</p></div><button class="btn ghost sm" data-goprac>${ic("spark")} Go to practice</button></div></div>
+  ${footer()}`;
+}
+function openLesson(k){
+  const L=LESSONS[k];
+  openLayer(`<div class="modal" role="dialog" aria-modal="true" aria-labelledby="lT"><div class="spread"><div><p class="label">Lesson preview · ${MOMENTS[k].name}</p><h2 id="lT">${esc(L.t)}</h2></div><button class="x" data-close aria-label="Close">${ic("x")}</button></div>
+   <div class="player" aria-label="Video player preview, not playable yet"><div class="screen"><div class="skel" style="width:55%"></div><div class="skel" style="width:38%"></div><div class="pmsg"><b>Lesson video coming with the pilot</b><span>Short animated lesson · Japanese audio, English subtitles · ${L.len}</span></div></div>
+   <div class="controls"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><span>0:00</span><span class="trk"></span><span>${L.len}</span></div></div>
+   <p class="label" style="margin-top:16px">What it will cover</p><ul class="checks">${L.cover.map(c=>li("ok",c,"")).join("")}</ul>
+   <div class="row" style="margin-top:12px"><button class="btn" data-sheet2="${k}">${ic("file")} Open cheat sheet</button><button class="btn ghost" data-prac="${k}">${ic("spark")} Practise ${esc(MOMENTS[k].name)}</button></div></div>`);
+  wireLayer();
+}
+function openSheet(k){
+  const S2=SHEETS[k];
+  openLayer(`<div class="modal" role="dialog" aria-modal="true" aria-labelledby="shT"><div class="spread"><div><p class="label">Cheat sheet · ${MOMENTS[k].name}</p><h2 id="shT">${esc(S2.t)}</h2></div><button class="x" data-close aria-label="Close">${ic("x")}</button></div>
+   <div class="sheet">${S2.steps.map((s,i)=>`<div class="st"><span class="num" aria-hidden="true">${i+1}</span><div><b>${esc(s[0])}</b> <span class="why">· ${esc(s[1])}</span><p class="jp" lang="ja">${esc(s[2])}</p></div></div>`).join("")}</div>
+   <div class="dodont" style="margin-top:14px"><p class="do">${ic("check")}<span><b>Do:</b> ${esc(S2.doo)}</span></p><p class="dont">${ic("x")}<span><b>Don’t:</b> ${esc(S2.dont)}</span></p></div>
+   <p class="hint" style="margin-top:12px">Draft phrases, to be reviewed by native care educators.</p>
+   <div class="row" style="margin-top:12px"><button class="btn" data-prac="${k}">${ic("spark")} Practise ${esc(MOMENTS[k].name)}</button></div></div>`);
+  wireLayer();
+}
+function wireLayer(){ const L=$("#layer");
+  L.querySelectorAll("[data-sheet2]").forEach(b=>b.addEventListener("click",()=>openSheet(b.dataset.sheet2)));
+  L.querySelectorAll("[data-prac]").forEach(b=>b.addEventListener("click",()=>go("trainee",b.dataset.prac))); }
+
+/* ---------- layer (drawer/modal) ---------- */
+let lastFocus=null;
+function openLayer(html){ lastFocus=document.activeElement; const L=$("#layer"); L.innerHTML=`<div class="scrim" data-close></div>`+html; animateIn(L); const f=L.querySelector("[data-close].x"); f&&f.focus(); L.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",closeLayer)); L.querySelectorAll("[data-assign]").forEach(b=>b.addEventListener("click",()=>assign(b.dataset.assign,b.dataset.who))); }
+function closeLayer(){ const L=$("#layer"); if(L.innerHTML){ L.innerHTML=""; lastFocus&&lastFocus.focus&&lastFocus.focus(); } }
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeLayer(); });
+function assign(k, who){ if(who==="priya"||!who) { S.assigned[k]=true; save(); } toast(`${MOMENTS[k].name} practice assigned${who?" to "+COHORT.find(p=>p.id===who).name:""}`); }
+
+/* ---------- wiring ---------- */
+function wire(){
+  document.querySelectorAll("[data-open]").forEach(b=>b.addEventListener("click",()=>go("trainee",b.dataset.open)));
+  document.querySelectorAll("[data-home]").forEach(b=>b.addEventListener("click",()=>go("trainee")));
+  const rm=$("#resetMe"); rm&&rm.addEventListener("click",()=>{ S.attempts={respond:[],report:[],document:[]}; S.assigned={}; S.chat=null; save(); render(); toast("Your attempts were reset"); });
+  if(S.role==="trainee"&&S.view==="report"){ const ta=$("#repIn"); ta.addEventListener("input",()=>{ S.reportText=ta.value; renderReportFB(false); }); document.querySelectorAll("[data-fill]").forEach(b=>b.addEventListener("click",()=>{ ta.value=b.dataset.fill==="clear"?"":REP[b.dataset.fill]; S.reportText=ta.value; renderReportFB(false); ta.focus(); })); $("#repCheck").addEventListener("click",()=>{ if(!ta.value.trim()){ ta.focus(); return; } delete S.assigned.report; renderReportFB(true); }); renderReportFB(false); }
+  if(S.role==="trainee"&&S.view==="document"){ const ta=$("#docIn"); ta.addEventListener("input",()=>{ S.docText=ta.value; renderDocFB(false); }); document.querySelectorAll("[data-dfill]").forEach(b=>b.addEventListener("click",()=>{ ta.value=b.dataset.dfill==="clear"?"":DOC[b.dataset.dfill]; S.docText=ta.value; renderDocFB(false); ta.focus(); })); $("#docCheck").addEventListener("click",()=>{ if(!ta.value.trim()){ ta.focus(); return; } delete S.assigned.document; renderDocFB(true); }); renderDocFB(false); }
+  if(S.role==="trainee"&&S.view==="respond"){ chatInit(); drawChat(); renderRespondFB(); const ta=$("#chatIn"); $("#chatSend").addEventListener("click",()=>{ const v=ta.value; ta.value=""; delete S.assigned.respond; save(); send(v); }); ta.addEventListener("keydown",e=>{ if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing){ e.preventDefault(); $("#chatSend").click(); } }); document.querySelectorAll("[data-say]").forEach(b=>b.addEventListener("click",()=>{ ta.value=SAYS[+b.dataset.say][0]; ta.focus(); })); $("#chatReset").addEventListener("click",()=>{ S.chat=null; chatInit(); drawChat(); renderRespondFB(); }); }
+  document.querySelectorAll("[data-trainee]").forEach(r=>{ r.addEventListener("click",()=>openTrainee(r.dataset.trainee)); r.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); openTrainee(r.dataset.trainee); } }); });
+  document.querySelectorAll("[data-assign-all]").forEach(b=>b.addEventListener("click",()=>{ const k=b.dataset.assignAll; S.assigned[k]=true; save(); toast(`${MOMENTS[k].name} practice assigned to trainees below 60`); }));
+  document.querySelectorAll("[data-report]").forEach(b=>b.addEventListener("click",()=>openReport(b.dataset.report)));
+  document.querySelectorAll("[data-lesson]").forEach(b=>b.addEventListener("click",()=>openLesson(b.dataset.lesson)));
+  document.querySelectorAll("[data-sheet]").forEach(b=>b.addEventListener("click",()=>openSheet(b.dataset.sheet)));
+  document.querySelectorAll("[data-goprac]").forEach(b=>b.addEventListener("click",()=>go("trainee")));
+}
+const footer=()=>`<p class="foot">Kizuna prototype · Scenarios and Japanese samples are illustrative and will be reviewed by native care educators · Batch data is sample data, except the live trainee row.</p>`;
+
+fromHash(); render();
+})();
+</script>
+</body>
+</html>
