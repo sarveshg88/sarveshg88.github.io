@@ -36,6 +36,17 @@ The "Hiring for" switch at the top changes the pitch, the headline numbers and t
 
 Fonts come from Google Fonts (Geist, Geist Mono, Fraunces), icons from Phosphor (unpkg), and smooth scrolling from Lenis (jsDelivr, desktop only). Everything else is hand written in `index.html`. All motion turns off for visitors who set "reduce motion" on their device.
 
+## How to update the site
+
+The live site is whatever is on the `main` branch of github.com/sarveshg88/sarveshg88.github.io. Every push redeploys it, usually within a minute or two.
+
+- **With Claude:** open this folder (`D:\Portfolio\site`), say what to change, and ask for it to be committed and pushed.
+- **By hand on your laptop:** edit the files, then run `git add -A`, `git commit -m "what changed"` and `git push` from this folder.
+- **In the browser:** open the file on GitHub, click the pencil icon, edit, then **Commit changes**. Run `git pull` here afterwards so this folder stays in sync.
+- **Replace the resume:** overwrite `assets/Sarvesh_Goyal_Resume.pdf` with a file of the same name, then commit and push.
+
+Every version is kept in the git history, so any change can be undone.
+
 ## Preview locally
 
 ```
